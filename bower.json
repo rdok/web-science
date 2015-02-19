@@ -17,6 +17,7 @@
     "morrisjs": "~0.5.1",
     "raphael": "~2.1.3",
     "slimScroll": "~1.3.3",
-    "sparkline": "~2.1.2"
+    "sparkline": "~2.1.2",
+    "jvectormap": "~2.0.0"
   }
 }

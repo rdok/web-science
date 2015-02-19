@@ -5,11 +5,11 @@
     <title>StatsApp | {!! $title !!} </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
-    {!! HTML::style('packages/bootstrap/dist/css/bootstrap.min.css') !!}
+    {!! HTML::style('packages/bower/bootstrap/dist/css/bootstrap.min.css') !!}
     <!-- Font Awesome Icons -->
-    {!! HTML::style('packages/fontawesome/css/font-awesome.min.css') !!}
+    {!! HTML::style('packages/bower/fontawesome/css/font-awesome.min.css') !!}
     <!-- Ionicons -->
-    {!! HTML::style('packages/ionicons/css/ionicons.min.css') !!}
+    {!! HTML::style('packages/bower/ionicons/css/ionicons.min.css') !!}
     @yield('styles')
     <!-- AdminLTE -->
     {!! HTML::style('css/AdminLTE/AdminLTE.min.css') !!}
@@ -58,11 +58,11 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-{!! HTML::script('packages/jquery/dist/jquery.min.js') !!}
+{!! HTML::script('packages/bower/jquery/dist/jquery.min.js') !!}
 <!-- Bootstrap -->
-{!! HTML::script('packages/bootstrap/dist/js/bootstrap.min.js') !!}
+{!! HTML::script('packages/bower/bootstrap/dist/js/bootstrap.min.js') !!}
 <!-- FastClick -->
-{!! HTML::script('packages/fastclick/lib/fastclick.js') !!}
+{!! HTML::script('packages/bower/fastclick/lib/fastclick.js') !!}
 <!-- AdminLTE App -->
 {!! HTML::script('js/app.min.js') !!}
 @yield('scripts')
