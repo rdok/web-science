@@ -69,11 +69,11 @@
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                            {!! HTML::image('img/default-avatar.png', 'User Image', ['class' => 'user-image']) !!}
 
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                Public User
+                                <small>{!! Carbon\Carbon::now() !!}</small>
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -82,7 +82,7 @@
                                 <a href="#">Followers</a>
                             </div>
                             <div class="col-xs-4 text-center">
-                                <a href="#">Sales</a>
+                                <a href="#">Artists</a>
                             </div>
                             <div class="col-xs-4 text-center">
                                 <a href="#">Friends</a>

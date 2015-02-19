@@ -11,11 +11,17 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+get('/', [
+	'as'   => 'show_dashboard',
+	'uses' => 'WelcomeController@index'
+]);
 
-Route::get('home', 'HomeController@index');
+get('lastfm/artists', [
+	'as'   => 'show_lastfm_artists',
+	'uses' => 'LastFMController@artists'
+]);
 
 Route::controllers([
-	'auth' => 'Auth\AuthController',
+	'auth'     => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
