@@ -1,20 +1,23 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Artist;
 
-class LastFMController extends Controller {
+class ArtistController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function artists()
+	public function showList()
 	{
 		$title = "LastFM Artists";
-		$secondTitle = "table";
+        $secondTitle = "table";
 
-		return view('lastfm.artists', compact('title', 'secondTitle'));
+        $artists = Artist::all();
+
+		return view('artists.list', compact('title', 'secondTitle', 'artists'));
 	}
 
 	/**

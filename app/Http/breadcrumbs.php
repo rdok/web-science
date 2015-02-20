@@ -11,8 +11,9 @@ Breadcrumbs::register('show_dashboard', function ($breadcrumbs)
 });
 
 // Home > [Page]
-Breadcrumbs::register('show_lastfm_artists', function ($breadcrumbs)
+Breadcrumbs::register('show_artists', function ($breadcrumbs)
 {
-	$breadcrumbs->parent('show_dashboard');
-	$breadcrumbs->push("LastFM Artists", route('show_lastfm_artists'));
+    $breadcrumbs->parent('show_dashboard');
+
+	$breadcrumbs->push("LastFM Artists", route('show_artists'));
 });

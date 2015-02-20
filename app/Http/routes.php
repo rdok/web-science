@@ -16,9 +16,14 @@ get('/', [
 	'uses' => 'WelcomeController@index'
 ]);
 
-get('lastfm/artists', [
-	'as'   => 'show_lastfm_artists',
-	'uses' => 'LastFMController@artists'
+get('artists', [
+	'as'   => 'show_artists',
+	'uses' => 'ArtistController@showList'
+]);
+
+get('artists/upload', [
+	'as'   => 'upload_artists',
+	'uses' => 'ArtistController@store'
 ]);
 
 Route::controllers([

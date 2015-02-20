@@ -16,10 +16,10 @@ class CreateArtistsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name');
-			$table->string('mbid')->unique();
+			$table->string('mbid')->unique()->nullable();
 			$table->string('url');
-			$table->string('streamable');
-			$table->string('on_tour');
+			$table->string('streamable')->nullable();
+			$table->string('on_tour')->nullable();
 			$table->timestamps();
 		});
 	}

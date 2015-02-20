@@ -32,13 +32,13 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
             </li>
-            <li class="treeview {!! set_active('show_lastfm_artists') !!}">
+            <li class="treeview {!! set_active('show_artists') !!}">
                 <a href="#">
                     <i class="fa fa-lastfm"></i> <span>Raw Data</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{!! set_active('show_lastfm_artists') !!}">
-                        <a href="{!! route('show_lastfm_artists') !!}">
+                    <li class="{!! set_active('show_artists') !!}">
+                        <a href="{!! route('show_artists') !!}">
                             <i class="fa fa-circle-o"></i> Artists
                         </a>
                     </li>

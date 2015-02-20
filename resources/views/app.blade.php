@@ -10,7 +10,9 @@
     {!! HTML::style('packages/bower/fontawesome/css/font-awesome.min.css') !!}
     <!-- Ionicons -->
     {!! HTML::style('packages/bower/ionicons/css/ionicons.min.css') !!}
+
     @yield('styles')
+
     <!-- AdminLTE -->
     {!! HTML::style('css/AdminLTE/AdminLTE.min.css') !!}
     {!! HTML::style('css/skins/skin-black.min.css') !!}
@@ -24,6 +26,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
+
 <body class="skin-black">
 
 <div class="wrapper">
