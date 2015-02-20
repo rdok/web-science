@@ -198,7 +198,6 @@ return [
 
 		'Form'        => 'Illuminate\Html\FormFacade',
 		'HTML'        => 'Illuminate\Html\HtmlFacade',
-
 		'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
 	],
 
