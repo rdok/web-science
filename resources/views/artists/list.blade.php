@@ -10,7 +10,11 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
+                    <h3 class="box-title">All Artists
+                        <a href="{!! route('upload_artists') !!}" class="btn bg-navy btn-flat margin">
+                            <i class='fa fa-cloud-upload'></i>
+                        </a>
+                    </h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table id="artists-table" class="table table-bordered table-striped table-hover" width="100%" cellspacing="0">
@@ -27,8 +31,7 @@
                         <tr>
                             <td>{!! $artist->name !!}</td>
                             <td>
-                                {!! link_to($artist->url, 'View', ['class' => 'btn btn-block btn-info btn-xs',
-                                     'target' => '_blank']) !!}
+                                {!! link_to($artist->url, 'View', ['class' => 'btn btn-block btn-info btn-xs', 'target' => '_blank']) !!}
                             </td>
                             <td>{!! $artist->updated_at !!}</td>
                         </tr>
