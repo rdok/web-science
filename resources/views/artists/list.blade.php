@@ -10,24 +10,41 @@
         <div class="col-xs-6">
             <div class="box box-default collapsed-box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Upload</h3>
+                    <h3 class="box-title">Database</h3>
                     <div class="box-tools pull-right">
                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
                         <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
                     </div><!-- /.box-tools -->
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                    {!! Form::open(['route' => 'artists_store', 'files' => true]) !!}
-                        <div class="form-group">
-                            {!! Form::file('artists', ['class' => 'filestyle btn btn-app', 'data-badge' => 'false',
-                                'data-input' => 'false', 'type' => 'file', 'data-iconName' => 'fa fa-file-text-o',
-                                'required' => 'required']) !!}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <fieldset @if (count($artists) !== 0) disabled @endif>
+                                {!! Form::open(['route' => 'artists_store', 'files' => true, 'class' => 'form-inline']) !!}
+                                <div class="form-group">
+                                    {!! Form::file('artists', ['class' => 'filestyle btn btn-app', 'data-badge' => 'false',
+                                    'data-input' => 'false', 'type' => 'file', 'data-iconName' => 'fa fa-file-text-o',
+                                    'required' => 'required']) !!}
+                                    {!! Form::button('<i class="fa fa-cloud-upload"></i>', ['type' => 'submit',
+                                    'class' => 'btn btn-app', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom',
+                                    'title' => 'Insert artists data from file']) !!}
+                                </div>
+                                {!! Form::close() !!}
+                            </fieldset>
                         </div>
-                        <div class="form-group">
-                            {!! Form::button('<i class="fa fa-cloud-upload"></i>', ['type' => 'submit',
-                                'class' => 'btn btn-app']) !!}
+
+                        <div class="col-md-6">
+                            <fieldset @if (count($artists) === 0) disabled @endif>
+                                {!! Form::open(['method' => 'delete', 'route' => 'artists_destroy']) !!}
+                                <div class="form-group">
+                                    {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit',
+                                    'class' => 'btn btn-app', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom',
+                                    'title' => 'Delete All Artists']) !!}
+                                </div>
+                                {!! Form::close() !!}
+                            </fieldset>
                         </div>
-                    {!! Form::close() !!}
+                    </div>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div>

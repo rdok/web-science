@@ -19,7 +19,7 @@ class ArtistsController extends Controller {
 		$title = "Artists";
 		$secondTitle = "table";
 
-		$artists = Artist::all();
+		$artists = Artist::paginate(100);
 
 		return view('artists.list', compact('title', 'secondTitle', 'artists'));
 	}
@@ -79,12 +79,11 @@ class ArtistsController extends Controller {
 				DB::table('artists')->insert($chunk);
 			}
 
-
-			return "redirect to artist with success message";
+			return redirect()->back();
 		}
 
 		// show error message
-		return "show errror message";
+		return redirect()->back();
 	}
 
 	/**
@@ -122,13 +121,14 @@ class ArtistsController extends Controller {
 
 	/**
 	 * Remove the specified resource from storage.
-	 *
-	 * @param  int $id
 	 * @return Response
+	 * @internal param int $id
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
-		//
+		Artist::truncate();
+
+		return redirect()->back();
 	}
 
 }

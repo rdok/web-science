@@ -1,6 +1,7 @@
 <?php
 
-Event::listen('illuminate.query', function($sql){
+Event::listen('illuminate.query', function ($sql)
+{
 //	var_dump($sql);
 });
 
@@ -10,14 +11,17 @@ get('/', [
 ]);
 
 $router->resource('artists', 'ArtistsController', [
-	'only' => ['index', 'store'],
+	'only'  => ['index', 'store', 'destroy'],
 	'names' => [
-		'index' => 'artists_path',
-		'store' => 'artists_store'
+		'index'   => 'artists_path',
+		'store'   => 'artists_store',
+		'destroy' => 'artists_destroy'
 	]
 ]);
 
-post('queue/db/insert/artists', function(){
+// TODO: queue service if process takes to lon
+post('queue/db/insert/artists', function ()
+{
 
 });
 
