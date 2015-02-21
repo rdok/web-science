@@ -8,6 +8,6 @@ class Stat extends Model {
 
 	public function artist()
 	{
-		return $this->belongsTo('App\Artist');
+		return $this->belongsTo('App\Artist')->withTimestamps();
 	}
 }

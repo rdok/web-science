@@ -1,30 +1,25 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+Event::listen('illuminate.query', function($sql){
+//	var_dump($sql);
+});
 
 get('/', [
 	'as'   => 'show_dashboard',
 	'uses' => 'WelcomeController@index'
 ]);
 
-get('artists', [
-	'as'   => 'show_artists',
-	'uses' => 'ArtistController@showList'
+$router->resource('artists', 'ArtistsController', [
+	'only' => ['index', 'store'],
+	'names' => [
+		'index' => 'artists_path',
+		'store' => 'artists_store'
+	]
 ]);
 
-get('artists/upload', [
-	'as'   => 'upload_artists',
-	'uses' => 'ArtistController@store'
-]);
+post('queue/db/insert/artists', function(){
+
+});
 
 Route::controllers([
 	'auth'     => 'Auth\AuthController',

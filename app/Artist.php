@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Artist extends Model {
 
-	protected $fillable = ['name', 'mbid', 'url', 'streamable', 'on_tour'];
+	protected $fillable = ['slug', 'name', 'mbid', 'url', 'streamable', 'on_tour'];
 
 	public function bandMembers()
 	{

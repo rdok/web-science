@@ -6,9 +6,12 @@ class Image extends Model {
 
 	protected $fillable = ['url', 'size'];
 
+	/**
+	 * @return mixed
+	 */
 	public function imageable()
 	{
-		return $this->morphTo();
+		return $this->morphTo()->withTimestamps();
 	}
 
 

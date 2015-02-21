@@ -7,14 +7,37 @@
 
 @section('content')
     <div class="row">
+        <div class="col-xs-6">
+            <div class="box box-default collapsed-box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Upload</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                        <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove"><i class="fa fa-times"></i></button>
+                    </div><!-- /.box-tools -->
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    {!! Form::open(['route' => 'artists_store', 'files' => true]) !!}
+                        <div class="form-group">
+                            {!! Form::file('artists', ['class' => 'filestyle btn btn-app', 'data-badge' => 'false',
+                                'data-input' => 'false', 'type' => 'file', 'data-iconName' => 'fa fa-file-text-o',
+                                'required' => 'required']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::button('<i class="fa fa-cloud-upload"></i>', ['type' => 'submit',
+                                'class' => 'btn btn-app']) !!}
+                        </div>
+                    {!! Form::close() !!}
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">All Artists
-                        <a href="{!! route('upload_artists') !!}" class="btn bg-navy btn-flat margin">
-                            <i class='fa fa-cloud-upload'></i>
-                        </a>
-                    </h3>
+                    <h3 class="box-title">All Artists </h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table id="artists-table" class="table table-bordered table-striped table-hover" width="100%" cellspacing="0">
@@ -31,7 +54,7 @@
                         <tr>
                             <td>{!! $artist->name !!}</td>
                             <td>
-                                {!! link_to($artist->url, 'View', ['class' => 'btn btn-block btn-info btn-xs', 'target' => '_blank']) !!}
+                                <a href="{!! url($artist->url) !!}" target="_blank" ><i class="fa fa-lastfm"></i></a>
                             </td>
                             <td>{!! $artist->updated_at !!}</td>
                         </tr>
@@ -58,6 +81,8 @@
 {!! HTML::script('packages/DataTables/dataTables.bootstrap.js') !!}
 <!-- SlimScroll -->
 {!! HTML::script('packages/bower/slimScroll/jquery.slimscroll.min.js') !!}
+<!-- Bootstrap Filestyle -->
+{!! HTML::script('packages/bootstrap-filestyle/bootstrap-filestyle.min.js') !!}
 
 <!-- page script -->
 <script type="text/javascript">
