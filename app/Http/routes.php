@@ -10,19 +10,25 @@ get('/', [
 	'uses' => 'WelcomeController@index'
 ]);
 
-Route::group(['prefix' => 'api/v1'], function ()
-{
-	Route::resource('artists', 'ArtistsController', [
-		'only'  => ['index', 'store', 'show', 'destroy'],
-		'names' => [
-			'index' => 'artists_path',
-			'store' => 'artists_store',
-			'show'  => 'artist_show',
+Route::resource('artists', 'ArtistsController', [
+	'only'  => ['index', 'store', 'show', 'destroy'],
+	'names' => [
+		'index'   => 'artists_path',
+		'store'   => 'artists_store',
+		'show'    => 'artist_show',
 		'destroy' => 'artists_destroy'
+	]
+]);
 
-		]
-	]);
-});
+Route::resource('api/v1/artists', 'ApiArtistsController', [
+	'only'  => ['index', 'store', 'show', 'destroy'],
+	'names' => [
+		'index'   => 'api_artists_path',
+		'store'   => 'api_artists_store',
+		'show'    => 'api_artist_show',
+		'destroy' => 'api_artists_destroy'
+	]
+]);
 
 //post('queue/db/insert/artists', function ()
 //{

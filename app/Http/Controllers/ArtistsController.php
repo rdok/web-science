@@ -1,26 +1,25 @@
 <?php namespace App\Http\Controllers;
 
 use App\Artist;
-use App\StatsApp\Transformers\ArtistTransformer;
-use Illuminate\Support\Facades\Response;
+use App\StatsApp\Importers\ArtistImporter;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
+
 
 /**
  * Class ArtistsController
  * @package App\Http\Controllers
  */
-class ArtistsController extends ApiController {
+class ArtistsController extends Controller {
+
+	protected $artistImporter;
 
 	/**
-	 * @var ArtistTransformer;
+	 * @param ArtistImporter $artistImporter
 	 */
-	protected $artistTransformer;
-
-	/**
-	 * @param ArtistTransformer $artistTransformer
-	 */
-	function __construct(ArtistTransformer $artistTransformer)
+	function __construct(ArtistImporter $artistImporter)
 	{
-		$this->artistTransformer = $artistTransformer;
+		$this->artistImporter = $artistImporter;
 	}
 
 	/**
@@ -30,15 +29,11 @@ class ArtistsController extends ApiController {
 	 */
 	public function index()
 	{
-//		$title = "Artists";
-//		$secondTitle = "table";
-//		return view('artists.list', compact('title', 'secondTitle', 'artists'));
-
+		$title = "Artists";
+		$secondTitle = "table";
 		$artists = Artist::paginate(100);
 
-		return $this->respond([
-			'data' => $this->artistTransformer->transformCollection($artists->all())
-		]);
+		return view('artists.list', compact('title', 'secondTitle', 'artists'));
 	}
 
 	/**
@@ -65,36 +60,7 @@ class ArtistsController extends ApiController {
 
 			$artistsFile = File::get($artistsFileInfo->getRealPath());
 
-			$rawArtists = explode("\n", $artistsFile); // to array
-
-			$totalArtists = count($rawArtists) - 1; // -1 due to \n at last line
-
-			$artists = [];
-
-			// TODO: for each line create new artists if new artists slag does not exist
-			for ($i = 1; $i < $totalArtists; $i++) // first line contains labels; omit them
-			{
-				list($id, $name, $url, $pictureUrl) = explode("\t", $rawArtists[$i]);
-
-				$slug = str_replace('http://www.last.fm/music/', '', $url);
-
-				$now = Carbon::now();
-
-				$artists[] = [
-					'name'       => $name,
-					'slug'       => $slug,
-					'url'        => $url,
-					'created_at' => $now,
-					'updated_at' => $now
-				];
-			}
-
-			$artistChunk = array_chunk($artists, 200);
-
-			foreach ($artistChunk as $chunk)
-			{
-				DB::table('artists')->insert($chunk);
-			}
+			$this->artistImporter->import($artistsFile);
 
 			return redirect()->back();
 		}
@@ -111,16 +77,6 @@ class ArtistsController extends ApiController {
 	 */
 	public function show($id)
 	{
-		$artist = Artist::find($id);
-
-		if (!$artist)
-		{
-			return $this->respondNotFound('Artist not found');
-		}
-
-		return $this->respond([
-			'data' => $this->artistTransformer->transform($artist)
-		]);
 	}
 
 	/**
@@ -156,5 +112,6 @@ class ArtistsController extends ApiController {
 
 		return redirect()->back();
 	}
+
 
 }
