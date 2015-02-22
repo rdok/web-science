@@ -61,7 +61,11 @@
                     </ul>
                 </li>
                 <!-- include file -->
-                @include('_partials.profile-popup-guest')
+                @if(Auth::check())
+                    @include('_partials.profile-popup-user')
+                @else
+                    @include('_partials.profile-popup-guest')
+                @endif
             </ul>
         </div>
     </nav>

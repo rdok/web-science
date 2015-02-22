@@ -7,13 +7,15 @@
         </div><!-- /.login-logo -->
         <div class="login-box-body">
             <p class="login-box-msg">Sign in to start your session</p>
-            <form action="../../index2.html" method="post">
-                <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Email"/>
+            {!! Form::open(['route' => 'session_store']) !!}
+                <div class="form-group {{  $errors->has('email') ? 'has-error' : ''}} has-feedback">
+                    {!! $errors->first('email', '<label class="control-label" for="name"><i class="fa fa-times-circle-o"></i> :message</label>') !!}
+                    {!! Form::input('email', 'email', null, ['placeholder' => 'Email', 'class' => 'form-control']) !!}
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
-                <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password"/>
+                <div class="form-group {{  $errors->has('password') ? 'has-error' : ''}} has-feedback">
+                    {!! $errors->first('password', '<label class="control-label" for="name"><i class="fa fa-times-circle-o"></i> :message</label>') !!}
+                    {!! Form::password('password', ['placeholder' => 'Password', 'class' => 'form-control']) !!}
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="row">
@@ -25,10 +27,11 @@
                         </div>
                     </div><!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        {{ $error or '' }}
+                        {!! Form::submit('Sign In', ['class' => 'btn btn-primary btn-block btn-flat']) !!}
                     </div><!-- /.col -->
                 </div>
-            </form>
+            {!! Form::close() !!}
 
             <div class="social-auth-links text-center">
                 <p>- OR -</p>

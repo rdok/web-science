@@ -1,5 +1,10 @@
 <?php
 
+//Route::bind('users', function ($username)
+//{
+//	return \App\User::whereUsername($username)->first();
+//});
+
 Event::listen('illuminate.query', function ($sql)
 {
 //	var_dump($sql);
@@ -30,8 +35,17 @@ Route::resource('api/v1/artists', 'ApiArtistsController', [
 	]
 ]);
 
-get('login', [
-	'as' => 'login_index', 'uses' => 'Auth\LoginController@index'
+Route::resource('session', 'Auth\SessionController', [
+	'only'  => ['index', 'store'],
+	'names' => [
+		'index' => 'session_index',
+		'store' => 'session_store',
+	]
+]);
+
+get('logout', [
+	'as'   => 'session_destroy',
+	'uses' => 'Auth\SessionController@destroy'
 ]);
 
 Route::resource('register', 'Auth\RegistrationController', [

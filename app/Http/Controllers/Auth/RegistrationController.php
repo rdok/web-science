@@ -1,13 +1,30 @@
 <?php namespace App\Http\Controllers\Auth;
 
+use App\Commands\RegisterUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use app\StatsApp\Forms\RegistrationForm;
-use App\User;
+use App\Http\Requests\RegistrationRequest;
+use App\StatsApp\Forms\RegistrationForm;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
+/**
+ * Class RegistrationController
+ * @package App\Http\Controllers\Auth
+ */
 class RegistrationController extends Controller {
+	/**
+	 * @var Command
+	 */
+	private $command;
+
+	/**
+	 * @internal param Command $command
+	 */
+	function __construct()
+	{
+		$this->middleware('guest');
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -33,18 +50,20 @@ class RegistrationController extends Controller {
 	/**
 	 * Store a newly created resource in storage.
 	 *
+	 * @param RegistrationRequest $request
 	 * @return Response
 	 */
-	public function store()
+	public function store(RegistrationRequest $request)
 	{
-		// validate data
-		// redirect back unless login page
-		$user = User::create(
-			Input::only('name', 'username', 'email', 'password')
+		extract(Input::only('username', 'name', 'email', 'password'));
+
+		$user = $this->dispatch(
+			new RegisterUser($username, $name, $email, $password)
 		);
 
 		Auth::login($user);
 
+		// redirect back unless login page
 		return redirect()->route('show_dashboard');
 	}
 

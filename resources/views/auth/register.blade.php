@@ -10,25 +10,31 @@
             <p class="login-box-msg">Register a new membership</p>
 
             {!! Form::open(['route' => 'register_store']) !!}
-
-                <div class="form-group has-feedback">
-                    {!! Form::input('text', 'name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
+                <div class="form-group {{  $errors->has('name') ? 'has-error' : ''}} has-feedback">
+                    {!! $errors->first('name', '<label class="control-label" for="name"><i class="fa fa-times-circle-o"></i> :message</label>') !!}
+                    {!! Form::input('text', 'name', null, ['placeholder' => 'Name', 'class' => 'form-control',
+                        'id' => 'name']) !!}
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
-                <div class="form-group has-feedback">
+
+                <div class="form-group {{  $errors->has('username') ? 'has-error' : ''}} has-feedback">
+                    {!! $errors->first('username', '<label class="control-label" for="name"><i class="fa fa-times-circle-o"></i> :message</label>') !!}
                     {!! Form::input('text', 'username', null, ['placeholder' => 'Username', 'class' => 'form-control']) !!}
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
-                <div class="form-group has-feedback">
+                <div class="form-group {{  $errors->has('email') ? 'has-error' : ''}} has-feedback">
+                    {!! $errors->first('email', '<label class="control-label" for="name"><i class="fa fa-times-circle-o"></i> :message</label>') !!}
                     {!! Form::input('email', 'email', null, ['placeholder' => 'Email', 'class' => 'form-control']) !!}
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
-                <div class="form-group has-feedback">
+                <div class="form-group {{  $errors->has('password') ? 'has-error' : ''}} has-feedback">
+                    {!! $errors->first('password', '<label class="control-label" for="name"><i class="fa fa-times-circle-o"></i> :message</label>') !!}
                     {!! Form::password('password', ['placeholder' => 'Password', 'class' => 'form-control']) !!}
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
-                <div class="form-group has-feedback">
-                    {!! Form::password('confirm-password', ['placeholder' => 'Retype password', 'class' => 'form-control']) !!}
+                <div class="form-group @if($errors->has('password')) has-error @endif has-feedback">
+                    {!! $errors->first('password', '<label class="control-label" for="name"><i class="fa fa-times-circle-o"></i> :message</label>') !!}
+                    {!! Form::password('password_confirmation', ['placeholder' => 'Retype password', 'class' => 'form-control']) !!}
                     <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                 </div>
                 <div class="row">

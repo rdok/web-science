@@ -2,8 +2,16 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use App\Http\Requests\SessionRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
-class LoginController extends Controller {
+class SessionController extends Controller {
+
+	function __construct()
+	{
+//		$this->middleware('guest', ['except' => 'destroy']);
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -12,27 +20,39 @@ class LoginController extends Controller {
 	 */
 	public function index()
 	{
-		return view('auth.login');
+		$title = "Login";
+
+		return view('auth.login', compact('title'));
 	}
 
 	/**
 	 * Show the form for creating a new resource.
 	 *
+	 * @param SessionRequest $request
 	 * @return Response
 	 */
 	public function create()
 	{
-		//
+		if (Auth::attempt(Input::only('username', 'password')))
+		{
+			return redirect()->route('show_dashboard');
+		}
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
+	 * @param SessionRequest $sessionRequest
 	 * @return Response
 	 */
-	public function store()
+	public function store(SessionRequest $sessionRequest)
 	{
-		//
+		if (Auth::attempt(Input::only('email', 'password')))
+		{
+			return redirect()->route('show_dashboard');
+		}
+
+		return redirect()->back()->withInput()->with('error', 'Invalid email/password');
 	}
 
 	/**
@@ -71,12 +91,13 @@ class LoginController extends Controller {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
-		//
+		Auth::logout();
+
+		return redirect()->route('show_dashboard');
 	}
 
 }

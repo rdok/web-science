@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App\StatsApp\Users;
 
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -31,4 +31,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+	public static function register($username, $name, $email, $password)
+	{
+		$user = new static(compact('username', 'name', 'email', 'password'));
+
+		return $user;
+		// raise an event
+	}
 }

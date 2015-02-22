@@ -2,7 +2,7 @@
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         {!! HTML::image('img/default-avatar.png', 'User Image', ['class' => 'user-image']) !!}
-        <span class="hidden-xs">First</span>
+        <span class="hidden-xs"> {{ Auth::user()->username }}</span>
     </a>
     <ul class="dropdown-menu">
         <!-- User image -->
@@ -10,8 +10,8 @@
             {!! HTML::image('img/default-avatar.png', 'User Image', ['class' => 'user-image']) !!}
 
             <p>
-                First Last
-                <small>{!! Carbon\Carbon::now() !!}</small>
+                {{ Auth::user()->name }}
+                <small>{{ Auth::user()->created_at }}</small>
             </p>
         </li>
         <!-- Menu Body -->
@@ -28,11 +28,8 @@
         </li>
         <!-- Menu Footer-->
         <li class="user-footer">
-            <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
-            </div>
             <div class="pull-right">
-                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                {!! link_to_route('session_destroy', 'Sign out', [], ['class' => 'btn btn-default btn-flat']) !!}
             </div>
         </li>
     </ul>

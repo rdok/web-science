@@ -11,7 +11,7 @@ $I->fillField('username', 'rdok');
 $I->fillField('name', 'Rizart Dokollari');
 $I->fillField('email', 'r.dokollari@gmail.com');
 $I->fillField('password', 'secret');
-$I->fillField('confirm-password', 'secret');
+$I->fillField('password_confirmation', 'secret');
 $I->click('Register');
 
 $I->amOnRoute('show_dashboard');
