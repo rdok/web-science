@@ -31,10 +31,13 @@ Route::resource('api/v1/artists', 'ApiArtistsController', [
 ]);
 
 get('login', [
-	'as' => 'auth_login', 'uses' => 'Auth\AuthController@getLogin'
+	'as' => 'login_index', 'uses' => 'Auth\LoginController@index'
 ]);
 
-get('register', [
-	'as' => 'auth_register', 'uses' => 'Auth\AuthController@getRegister'
+Route::resource('register', 'Auth\RegistrationController', [
+	'only'  => ['index', 'store'],
+	'names' => [
+		'index' => 'register_index',
+		'store' => 'register_store',
+	]
 ]);
-

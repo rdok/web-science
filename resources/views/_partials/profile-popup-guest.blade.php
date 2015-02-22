@@ -29,10 +29,10 @@
         <!-- Menu Footer-->
         <li class="user-footer disabled">
             <div class="pull-left">
-                {!! link_to_route('auth_register', 'Sign Up', [], ['class' => 'btn btn-default btn-flat']) !!}
+                {!! link_to_route('register_index', 'Sign Up', [], ['class' => 'btn btn-default btn-flat']) !!}
             </div>
             <div class="pull-right">
-                {!! link_to_route('auth_login', 'Sign In', [], ['class' => 'btn btn-default btn-flat']) !!}
+                {!! link_to_route('login_index', 'Sign In', [], ['class' => 'btn btn-default btn-flat']) !!}
             </div>
         </li>
     </ul>

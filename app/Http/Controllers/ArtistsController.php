@@ -30,7 +30,6 @@ class ArtistsController extends Controller {
 	public function index()
 	{
 		$title = "Artists";
-		$secondTitle = "table";
 		$artists = Artist::paginate(100);
 
 		return view('artists.list', compact('title', 'secondTitle', 'artists'));

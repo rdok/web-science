@@ -12,7 +12,7 @@
     <section class="content-header">
         <h1>
             {!! $title !!}
-            <small>{!! $secondTitle !!}</small>
+            <small> table </small>
         </h1>
         {!! Breadcrumbs::render() !!}
     </section>
