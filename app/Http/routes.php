@@ -30,7 +30,11 @@ Route::resource('api/v1/artists', 'ApiArtistsController', [
 	]
 ]);
 
-//post('queue/db/insert/artists', function ()
-//{
-//
-//});
+get('login', [
+	'as' => 'auth_login', 'uses' => 'Auth\AuthController@getLogin'
+]);
+
+get('register', [
+	'as' => 'auth_register', 'uses' => 'Auth\AuthController@getRegister'
+]);
+

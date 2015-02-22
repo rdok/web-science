@@ -19,7 +19,7 @@ class WelcomeController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('guest');
+//		$this->middleware('guest');
 	}
 
 	/**
@@ -32,7 +32,7 @@ class WelcomeController extends Controller {
 		$title = "Dashboard";
 		$secondTitle = "";
 
-		return view('welcome', compact('title', 'secondTitle'));
+		return view('dashboard', compact('title', 'secondTitle'));
 	}
 
 }

@@ -44,7 +44,7 @@ class ApiArtistsController extends ApiController {
 	 *
 	 * @return Response
 	 */
-	public function store() 
+	public function store()
 	{
 		if (!Input::get('slug'))
 		{
