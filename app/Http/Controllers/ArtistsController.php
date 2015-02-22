@@ -4,7 +4,11 @@ use App\Artist;
 use App\StatsApp\Transformers\ArtistTransformer;
 use Illuminate\Support\Facades\Response;
 
-class ArtistsController extends Controller {
+/**
+ * Class ArtistsController
+ * @package App\Http\Controllers
+ */
+class ArtistsController extends ApiController {
 
 	/**
 	 * @var ArtistTransformer;
@@ -32,9 +36,9 @@ class ArtistsController extends Controller {
 
 		$artists = Artist::all();
 
-		return Response::json([
+		return $this->respond([
 			'data' => $this->artistTransformer->transformCollection($artists->all())
-		], 200);
+		]);
 	}
 
 	/**
@@ -112,16 +116,12 @@ class ArtistsController extends Controller {
 
 		if (!$artist)
 		{
-			return Response::json([
-				'error' => [
-					'message' => 'Artist does not exist'
-				]
-			], 404);
+			return $this->respondNotFound('Artist not found');
 		}
 
-		return Response::json([
+		return $this->respond([
 			'data' => $this->artistTransformer->transform($artist)
-		], 200);
+		]);
 	}
 
 	/**
