@@ -11,6 +11,8 @@ class ApiArtistsController extends ApiController {
 	function __construct(ArtistTransformer $artistTransformer)
 	{
 		$this->artistTransformer = $artistTransformer;
+
+		$this->middleware('auth.basic', ['only' => 'post']);
 	}
 
 	/**
@@ -42,9 +44,15 @@ class ApiArtistsController extends ApiController {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store() 
 	{
-		//
+		if (!Input::get('slug'))
+		{
+			// some kind of response
+			// 422
+			// provide a message
+			return $this->setStatusCode(422)->respondWithError('Parameters failed validation for an artist');
+		}
 	}
 
 	/**
