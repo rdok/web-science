@@ -1,6 +1,7 @@
 <?php
 
-Event::listen('illuminate.query', function($sql){
+Event::listen('illuminate.query', function ($sql)
+{
 //	var_dump($sql);
 });
 
@@ -9,19 +10,19 @@ get('/', [
 	'uses' => 'WelcomeController@index'
 ]);
 
-$router->resource('artists', 'ArtistsController', [
-	'only' => ['index', 'store'],
-	'names' => [
-		'index' => 'artists_path',
-		'store' => 'artists_store'
-	]
-]);
-
-post('queue/db/insert/artists', function(){
-
+Route::group(['prefix' => 'api/v1'], function ()
+{
+	Route::resource('artists', 'ArtistsController', [
+		'only'  => ['index', 'store', 'show'],
+		'names' => [
+			'index' => 'artists_path',
+			'store' => 'artists_store',
+			'show'  => 'artist_show'
+		]
+	]);
 });
 
-Route::controllers([
-	'auth'     => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+//post('queue/db/insert/artists', function ()
+//{
+//
+//});
