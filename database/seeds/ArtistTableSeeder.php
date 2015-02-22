@@ -1,20 +1,14 @@
 <?php
+use App\Artist;
+use Faker\Factory as Faker;
+use Illuminate\Database\Seeder;
+
 /**
  * @author Rizart Dokollari
- * @version 2/21/15
+ * @since 2/22/15
  */
+class ArtistTableSeeder extends Seeder {
 
-namespace database\seeds;
-
-
-use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
-
-class ArtistsTableSeeder extends Seeder {
-
-	/**
-	 *
-	 */
 	public function run()
 	{
 		$faker = Faker::create();

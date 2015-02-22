@@ -10,22 +10,21 @@ get('/', [
 	'uses' => 'WelcomeController@index'
 ]);
 
-$router->resource('artists', 'ArtistsController', [
-	'only'  => ['index', 'store', 'destroy'],
-	'names' => [
-		'index'   => 'artists_path',
-		'store'   => 'artists_store',
-		'destroy' => 'artists_destroy'
-	]
-]);
-
-// TODO: queue service if process takes to lon
-post('queue/db/insert/artists', function ()
+Route::group(['prefix' => 'api/v1'], function ()
 {
+	Route::resource('artists', 'ArtistsController', [
+		'only'  => ['index', 'store', 'show', 'destroy'],
+		'names' => [
+			'index' => 'artists_path',
+			'store' => 'artists_store',
+			'show'  => 'artist_show',
+		'destroy' => 'artists_destroy'
 
+		]
+	]);
 });
 
-Route::controllers([
-	'auth'     => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+//post('queue/db/insert/artists', function ()
+//{
+//
+//});

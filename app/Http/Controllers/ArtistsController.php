@@ -1,13 +1,27 @@
 <?php namespace App\Http\Controllers;
 
 use App\Artist;
-use App\Http\Requests;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Input;
+use App\StatsApp\Transformers\ArtistTransformer;
+use Illuminate\Support\Facades\Response;
 
-class ArtistsController extends Controller {
+/**
+ * Class ArtistsController
+ * @package App\Http\Controllers
+ */
+class ArtistsController extends ApiController {
+
+	/**
+	 * @var ArtistTransformer;
+	 */
+	protected $artistTransformer;
+
+	/**
+	 * @param ArtistTransformer $artistTransformer
+	 */
+	function __construct(ArtistTransformer $artistTransformer)
+	{
+		$this->artistTransformer = $artistTransformer;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -16,12 +30,15 @@ class ArtistsController extends Controller {
 	 */
 	public function index()
 	{
-		$title = "Artists";
-		$secondTitle = "table";
+//		$title = "Artists";
+//		$secondTitle = "table";
+//		return view('artists.list', compact('title', 'secondTitle', 'artists'));
 
 		$artists = Artist::paginate(100);
 
-		return view('artists.list', compact('title', 'secondTitle', 'artists'));
+		return $this->respond([
+			'data' => $this->artistTransformer->transformCollection($artists->all())
+		]);
 	}
 
 	/**
@@ -94,7 +111,16 @@ class ArtistsController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$artist = Artist::find($id);
+
+		if (!$artist)
+		{
+			return $this->respondNotFound('Artist not found');
+		}
+
+		return $this->respond([
+			'data' => $this->artistTransformer->transform($artist)
+		]);
 	}
 
 	/**
