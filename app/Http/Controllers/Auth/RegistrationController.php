@@ -59,11 +59,9 @@ class RegistrationController extends Controller {
 
 		Auth::login($user);
 
-		Flash::overlay('Welcome to StatsApp!');
+		Flash::overlay('Welcome to StatsApp');
 
-		$defaultUrl = route('show_dashboard');
-
-		return redirect()->intended($defaultUrl);
+		return redirect()->intended(route('show_dashboard'));
 	}
 
 	/**

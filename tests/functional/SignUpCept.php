@@ -7,7 +7,7 @@ $I->amOnRoute('show_dashboard');
 $I->click('Sign Up');
 $I->amOnRoute('register_index');
 
-$I->fillField('username', 'test');
+$I->fillField('username', 'rdok');
 $I->fillField('name', 'Rizart Dokollari');
 $I->fillField('email', 'test@gmail.com');
 $I->fillField('password', 'secret');
@@ -16,7 +16,7 @@ $I->click('Register');
 
 $I->amOnRoute('show_dashboard');
 
-$I->see('Welcome to StatsApp!');
+$I->see('Welcome to StatsApp', 'p');
 
 $I->seeRecord('users', [
 	'username' => 'rdok'

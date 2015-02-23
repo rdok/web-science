@@ -9,4 +9,4 @@ $I->signIn();
 
 $I->assertTrue(Auth::check(), "I am logged in to StatsApp");
 $I->amOnRoute('show_dashboard');
-$I->see('Welcome back!');
+$I->see('Welcome back');

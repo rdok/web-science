@@ -22,7 +22,7 @@ class ArtistsController extends Controller {
 	{
 		$this->artistImporter = $artistImporter;
 
-		$this->middleware('auth', ['only' => ['store', 'destroy']]);
+		$this->middleware('auth', ['only' => ['store', 'destroy', 'drop']]);
 	}
 
 	/**
@@ -68,7 +68,20 @@ class ArtistsController extends Controller {
 	 * Remove the specified resource from storage.
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
+	{
+		Artist::truncate();
+
+		Flash::success('Successfully deleted all artists database.');
+
+		return redirect()->route('artists_path');
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 * @return Response
+	 */
+	public function drop()
 	{
 		Artist::truncate();
 

@@ -37,9 +37,9 @@ class SessionController extends Controller {
 	{
 		if (Auth::attempt(Input::only('email', 'password')))
 		{
-			Flash::success('Welcome back!');
+			Flash::success('Welcome back');
 
-			return redirect()->back()->withInput();
+			return redirect()->intended(route('show_dashboard'))->withInput();
 		}
 
 		Flash::error('Invalid email/password');

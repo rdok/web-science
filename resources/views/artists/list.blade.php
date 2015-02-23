@@ -21,7 +21,7 @@
                    <div class="box-body">
                        <div class="row">
                            <div class="col-md-6">
-                                <fieldset @if (count($artists) !== 0) disabled @endif>
+                                <fieldset @if (count($artists) !== 0 || !Auth::check()) disabled @endif>
                                     {!! Form::open(['route' => 'artists_store', 'files' => true, 'class' => 'form-inline']) !!}
                                         <div class="form-group">
                                             {!! Form::file('artists', ['class' => 'filestyle btn btn-app', 'data-badge' => 'false',
@@ -37,8 +37,8 @@
                             </div>
 
                            <div class="col-md-6">
-                                <fieldset @if (count($artists) === 0) disabled @endif>
-                                    {!! Form::open(['method' => 'delete', 'route' => 'artists_destroy']) !!}
+                                <fieldset @if (count($artists) === 0 || !Auth::check()) disabled @endif>
+                                    {!! Form::open(['method' => 'post', 'route' => 'artists_drop']) !!}
                                         <div class="form-group">
                                             {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit',
                                             'class' => 'btn btn-app', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom',
