@@ -66,6 +66,7 @@
 {!! HTML::script('packages/bower/fastclick/lib/fastclick.js') !!}
 <!-- AdminLTE App -->
 {!! HTML::script('js/app.min.js') !!}
+<script>$('#flash-overlay-modal').modal();</script>
 @yield('scripts')
 </body>
 </html>

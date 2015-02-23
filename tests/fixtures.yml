@@ -1,0 +1,7 @@
+App\StatsApp\Users\User:
+  name: $string
+  username: $string
+  email: $string@example.com
+  password: $string
+  created_at: $date
+  updated_at: $date

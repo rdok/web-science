@@ -40,7 +40,7 @@ Route::resource('api/v1/artists', 'ApiArtistsController', [
 	]
 ]);
 
-Route::resource('session', 'Auth\SessionController', [
+Route::resource('login', 'Auth\SessionController', [
 	'only'  => ['index', 'store'],
 	'names' => [
 		'index' => 'session_index',

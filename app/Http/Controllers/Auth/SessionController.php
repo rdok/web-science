@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Requests\SessionRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Laracasts\Flash\Flash;
 
 class SessionController extends Controller {
 
@@ -14,7 +15,7 @@ class SessionController extends Controller {
 	}
 
 	/**
-	 * Display a listing of the resource.
+	 * Display a form for signing in.
 	 *
 	 * @return Response
 	 */
@@ -25,19 +26,6 @@ class SessionController extends Controller {
 		return view('auth.login', compact('title'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @param SessionRequest $request
-	 * @return Response
-	 */
-	public function create()
-	{
-		if (Auth::attempt(Input::only('username', 'password')))
-		{
-			return redirect()->route('show_dashboard');
-		}
-	}
 
 	/**
 	 * Store a newly created resource in storage.
@@ -49,10 +37,14 @@ class SessionController extends Controller {
 	{
 		if (Auth::attempt(Input::only('email', 'password')))
 		{
-			return redirect()->route('show_dashboard');
+			Flash::message('Welcome back!');
+
+			return view('show_dashboard');
 		}
 
-		return redirect()->back()->withInput()->with('error', 'Invalid email/password');
+		Flash::error('Invalid email/password');
+
+		return redirect()->back()->withInput();
 	}
 
 	/**

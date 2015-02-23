@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eeddfc167c17dd782d7bf89a152c71d1",
+    "hash": "b69c0e003e5624f0a4e2c191766f6d73",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -2168,12 +2168,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "0b4ea5887577dc39b2ffc8b4d7dbb1b12dce237b"
+                "reference": "96d99bfc8c35b33d5a3f09c7c0f3a1a400481adb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/0b4ea5887577dc39b2ffc8b4d7dbb1b12dce237b",
-                "reference": "0b4ea5887577dc39b2ffc8b4d7dbb1b12dce237b",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/96d99bfc8c35b33d5a3f09c7c0f3a1a400481adb",
+                "reference": "96d99bfc8c35b33d5a3f09c7c0f3a1a400481adb",
                 "shasum": ""
             },
             "require": {
@@ -2182,7 +2182,7 @@
                 "facebook/webdriver": "~0.4|~0.5",
                 "guzzlehttp/guzzle": "~4.0|~5.0",
                 "php": ">=5.4.0",
-                "phpunit/phpunit": "~4.5",
+                "phpunit/phpunit": "~4.5.0",
                 "symfony/browser-kit": "~2.4",
                 "symfony/console": "~2.4",
                 "symfony/css-selector": "~2.4",
@@ -2240,7 +2240,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2015-02-22 00:18:48"
+            "time": "2015-02-23 00:47:48"
         },
         {
             "name": "doctrine/instantiator",
@@ -2339,16 +2339,16 @@
         },
         {
             "name": "fzaninotto/faker",
-            "version": "v1.4.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "010c7efedd88bf31141a02719f51fb44c732d5a0"
+                "reference": "74f58bbda974d0820183d228f120c2f3258bf7f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/010c7efedd88bf31141a02719f51fb44c732d5a0",
-                "reference": "010c7efedd88bf31141a02719f51fb44c732d5a0",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/74f58bbda974d0820183d228f120c2f3258bf7f6",
+                "reference": "74f58bbda974d0820183d228f120c2f3258bf7f6",
                 "shasum": ""
             },
             "require": {
@@ -2358,14 +2358,18 @@
                 "phpunit/phpunit": "~4.0",
                 "squizlabs/php_codesniffer": "~1.5"
             },
+            "suggest": {
+                "ext-intl": "*"
+            },
             "type": "library",
             "extra": {
-                "branch-alias": []
+                "branch-alias": {
+                    "dev-master": "1.5.x-dev"
+                }
             },
             "autoload": {
-                "psr-0": {
-                    "Faker": "src/",
-                    "Faker\\PHPUnit": "test/"
+                "psr-4": {
+                    "Faker\\": "src/Faker/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2383,7 +2387,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2014-06-04 14:43:02"
+            "time": "2015-02-19 08:29:00"
         },
         {
             "name": "laracasts/testdummy",
@@ -3652,6 +3656,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "fzaninotto/faker": 20,
         "codeception/codeception": 20
     },
     "prefer-stable": false,

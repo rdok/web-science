@@ -14,10 +14,6 @@ use Laracasts\Flash\Flash;
  * @package App\Http\Controllers\Auth
  */
 class RegistrationController extends Controller {
-	/**
-	 * @var Command
-	 */
-	private $command;
 
 	/**
 	 * @internal param Command $command
@@ -64,9 +60,9 @@ class RegistrationController extends Controller {
 
 		Auth::login($user);
 
-		Flash::message('Registration successful');
+		Flash::overlay('Welcome to StatsApp!');
 
-		return redirect()->route('show_dashboard'); // redirect back unless login page
+		return view('show_dashboard'); // redirect back unless login page
 	}
 
 	/**
