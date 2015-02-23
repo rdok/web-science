@@ -40,7 +40,7 @@ class SessionController extends Controller {
 	{
 		if (Auth::attempt(Input::only('email', 'password')))
 		{
-			Flash::message('Welcome back!');
+			Flash::success('Welcome back!');
 
 			$defaultUrl = route('show_dashboard');
 
@@ -93,6 +93,8 @@ class SessionController extends Controller {
 	public function destroy()
 	{
 		Auth::logout();
+
+		Flash::success('You have been logged out!');
 
 		return redirect()->route('show_dashboard');
 	}

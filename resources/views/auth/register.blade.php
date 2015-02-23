@@ -7,6 +7,7 @@
         </div>
 
         <div class="register-box-body">
+            @include('flash::message')
             <p class="login-box-msg">Register a new membership</p>
 
             {!! Form::open(['route' => 'register_store']) !!}

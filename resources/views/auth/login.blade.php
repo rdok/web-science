@@ -4,8 +4,10 @@
     <div class="login-box">
         <div class="login-logo">
             <a href="{!! route('show_dashboard') !!}" class="logo"><b>Stats</b>App</a>
-        </div><!-- /.login-logo -->
+        </div>
+        <!-- /.login-logo -->
         <div class="login-box-body">
+            @include('flash::message')
             <p class="login-box-msg">Sign in to start your session</p>
             {!! Form::open(['route' => 'session_store']) !!}
                 <div class="form-group {{  $errors->has('email') ? 'has-error' : ''}} has-feedback">
