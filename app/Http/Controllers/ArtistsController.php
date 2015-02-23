@@ -22,7 +22,8 @@ class ArtistsController extends Controller {
 	{
 		$this->artistImporter = $artistImporter;
 
-		$this->middleware('auth', ['only' => ['store', 'destroy']]);
+		$this->middleware('auth', ['only' => [
+			'store', 'destroy', 'upload', 'drop']]);
 	}
 
 	/**
@@ -55,22 +56,6 @@ class ArtistsController extends Controller {
 	 */
 	public function store()
 	{
-		if (Input::hasFile('artists'))
-		{
-			$artistsFileInfo = Input::file('artists');
-
-			$artistsFile = File::get($artistsFileInfo->getRealPath());
-
-			$this->artistImporter->import($artistsFile);
-
-			Flash::success('Successfully imported artists data into database.');
-
-			return redirect()->back();
-		}
-
-		Flash::error('Something went wrong with importing data.');
-
-		return redirect()->back();
 	}
 
 	/**
@@ -81,6 +66,26 @@ class ArtistsController extends Controller {
 	 */
 	public function show($id)
 	{
+	}
+
+	public function upload()
+	{
+		if (Input::hasFile('artists'))
+		{
+			$artistsFileInfo = Input::file('artists');
+
+			$artistsFile = File::get($artistsFileInfo->getRealPath());
+
+			$this->artistImporter->import($artistsFile);
+
+			Flash::success('Successfully imported artists data into database.');
+
+			return redirect()->route('artists_path');
+		}
+
+		Flash::error('Something went wrong with importing data.');
+
+		return redirect()->route('artists_path');
 	}
 
 	/**
@@ -111,12 +116,14 @@ class ArtistsController extends Controller {
 	 */
 	public function destroy()
 	{
+	}
+
+	public function drop()
+	{
 		Artist::truncate();
 
 		Flash::success('Successfully deleted all artists database.');
 
 		return redirect()->route('artists_path');
 	}
-
-
 }

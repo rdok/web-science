@@ -40,9 +40,7 @@ class SessionController extends Controller {
 		{
 			Flash::success('Welcome back!');
 
-			$defaultUrl = route('show_dashboard');
-
-			return redirect()->intended($defaultUrl);
+			return redirect()->intended(route('show_dashboard'))->withInput();
 		}
 
 		Flash::error('Invalid email/password');

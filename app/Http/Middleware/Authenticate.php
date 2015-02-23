@@ -42,7 +42,7 @@ class Authenticate {
 			{
 				Flash::error("You need to login first.");
 
-				return redirect()->guest(route('session_index'));
+				return redirect()->guest(route('session_index'))->withInput();
 			}
 		}
 

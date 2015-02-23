@@ -20,21 +20,28 @@ get('/', [
 	'uses' => 'WelcomeController@index'
 ]);
 
-
+/**
+ * Resources for artists
+ */
+delete('artists/drop', [
+	'as'   => 'artists_drop',
+	'uses' => 'ArtistsController@drop'
+]);
+post('artists/upload', [
+	'as'   => 'artists_upload',
+	'uses' => 'ArtistsController@upload'
+]);
 Route::resource('artists', 'ArtistsController', [
-	'only'  => ['index', 'store', 'show', 'destroy'],
+	'only'  => ['index', 'artists_drop', 'artists_upload'],
 	'names' => [
-		'index' => 'artists_path',
-		'store' => 'artists_store',
-		'show'  => 'artist_show',
+		'index'   => 'artists_path',
+		'destroy' => 'artist_destroy',
 	]
 ]);
 
-delete('artists', [
-	'as'   => 'artists_destroy',
-	'uses' => 'ArtistsController@destroy'
-]);
-
+/**
+ * API
+ */
 Route::resource('api/v1/artists', 'ApiArtistsController', [
 	'only'  => ['index', 'store', 'show', 'destroy'],
 	'names' => [
@@ -44,6 +51,7 @@ Route::resource('api/v1/artists', 'ApiArtistsController', [
 		'destroy' => 'api_artists_destroy'
 	]
 ]);
+
 
 Route::resource('login', 'Auth\SessionController', [
 	'only'  => ['index', 'store'],
