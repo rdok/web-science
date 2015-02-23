@@ -34,8 +34,24 @@
     @include('layouts.partials.header')
 
     @include('layouts.partials.sidebar')
-
-    @yield('content')
+    <!-- Right side column. Contains the navbar and content of the page -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                {!! $title !!}
+                <small>{{ Inspiring::quote() }}</small>
+            </h1>
+            {!! Breadcrumbs::render() !!}
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            @include('flash::message')
+            @yield('content')
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
 
     @include('layouts.partials.footer')
 

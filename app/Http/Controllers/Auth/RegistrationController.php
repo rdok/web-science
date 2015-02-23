@@ -7,6 +7,7 @@ use App\Http\Requests\RegistrationRequest;
 use App\StatsApp\Forms\RegistrationForm;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Laracasts\Flash\Flash;
 
 /**
  * Class RegistrationController
@@ -63,8 +64,9 @@ class RegistrationController extends Controller {
 
 		Auth::login($user);
 
-		// redirect back unless login page
-		return redirect()->route('show_dashboard');
+		Flash::message('Registration successful');
+
+		return redirect()->route('show_dashboard'); // redirect back unless login page
 	}
 
 	/**

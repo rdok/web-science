@@ -1,5 +1,6 @@
 <?php namespace App\Commands;
 
+use App\Events\UserWasRegistered;
 use App\StatsApp\Users\User;
 use App\StatsApp\Users\UserRepository;
 use Illuminate\Contracts\Bus\SelfHandling;
@@ -47,7 +48,7 @@ class RegisterUser extends Command implements SelfHandling {
 
 		$this->userRepository->save($user);
 
-//		event(new UserWasRegistered($user));
+		event(new UserWasRegistered($user));
 
 		return $user;
 	}

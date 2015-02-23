@@ -1,5 +1,10 @@
 <?php
 
+Event::listen('App\Events\UserWasRegistered', function ($event)
+{
+//	dd("send mail notification"); use App\Providers\EventServiceProvider
+});
+
 //Route::bind('users', function ($username)
 //{
 //	return \App\User::whereUsername($username)->first();

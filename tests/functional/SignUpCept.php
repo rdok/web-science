@@ -7,9 +7,9 @@ $I->amOnRoute('show_dashboard');
 $I->click('Sign Up');
 $I->amOnRoute('register_index');
 
-$I->fillField('username', 'rdok');
+$I->fillField('username', 'test');
 $I->fillField('name', 'Rizart Dokollari');
-$I->fillField('email', 'r.dokollari@gmail.com');
+$I->fillField('email', 'test@gmail.com');
 $I->fillField('password', 'secret');
 $I->fillField('password_confirmation', 'secret');
 $I->click('Register');
