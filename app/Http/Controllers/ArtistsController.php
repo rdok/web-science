@@ -4,6 +4,7 @@ use App\Artist;
 use App\StatsApp\Importers\ArtistImporter;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
+use Laracasts\Flash\Flash;
 
 
 /**
@@ -20,6 +21,8 @@ class ArtistsController extends Controller {
 	function __construct(ArtistImporter $artistImporter)
 	{
 		$this->artistImporter = $artistImporter;
+
+		$this->middleware('auth', ['only' => ['store', 'destroy']]);
 	}
 
 	/**
@@ -52,7 +55,6 @@ class ArtistsController extends Controller {
 	 */
 	public function store()
 	{
-		// validate laravel checks csrf by defauled
 		if (Input::hasFile('artists'))
 		{
 			$artistsFileInfo = Input::file('artists');
@@ -61,10 +63,13 @@ class ArtistsController extends Controller {
 
 			$this->artistImporter->import($artistsFile);
 
+			Flash::success('Successfully imported artists data into database.');
+
 			return redirect()->back();
 		}
 
-		// show error message
+		Flash::error('Something went wrong with importing data.');
+
 		return redirect()->back();
 	}
 
@@ -103,13 +108,14 @@ class ArtistsController extends Controller {
 	/**
 	 * Remove the specified resource from storage.
 	 * @return Response
-	 * @internal param int $id
 	 */
 	public function destroy()
 	{
 		Artist::truncate();
 
-		return redirect()->back();
+		Flash::success('Successfully deleted all artists database.');
+
+		return redirect()->route('artists_path');
 	}
 
 

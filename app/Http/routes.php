@@ -20,14 +20,19 @@ get('/', [
 	'uses' => 'WelcomeController@index'
 ]);
 
+
 Route::resource('artists', 'ArtistsController', [
 	'only'  => ['index', 'store', 'show', 'destroy'],
 	'names' => [
-		'index'   => 'artists_path',
-		'store'   => 'artists_store',
-		'show'    => 'artist_show',
-		'destroy' => 'artists_destroy'
+		'index' => 'artists_path',
+		'store' => 'artists_store',
+		'show'  => 'artist_show',
 	]
+]);
+
+delete('artists', [
+	'as'   => 'artists_destroy',
+	'uses' => 'ArtistsController@destroy'
 ]);
 
 Route::resource('api/v1/artists', 'ApiArtistsController', [

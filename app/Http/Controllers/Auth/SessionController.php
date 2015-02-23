@@ -12,7 +12,7 @@ class SessionController extends Controller {
 
 	function __construct()
 	{
-//		$this->middleware('guest', ['except' => 'destroy']);
+		$this->middleware('guest', ['except' => 'destroy']);
 	}
 
 	/**
@@ -23,8 +23,6 @@ class SessionController extends Controller {
 	public function index()
 	{
 		$title = "Login";
-
-		Session::reflash();
 
 		return view('auth.login', compact('title'));
 	}

@@ -1,7 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Session;
-
 class WelcomeController extends Controller {
 
 	/*
@@ -31,8 +29,6 @@ class WelcomeController extends Controller {
 	public function index()
 	{
 		$title = "Dashboard";
-
-		Session::reflash();
 
 		return view('dashboard', compact('title'));
 	}

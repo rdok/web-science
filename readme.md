@@ -1,4 +1,4 @@
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)  ![Build Status](https://travis-ci.org/rdok/web-science.svg?branch=master)![Project Logo](http://i.imgur.com/YksoCwU.png?1)  
+[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)  [![Build Status](https://travis-ci.org/rdok/web-science.svg?branch=master)](https://travis-ci.org/rdok/web-science)
 
 **Achieve project requirements of the web science college course in an actual real business product.**
 

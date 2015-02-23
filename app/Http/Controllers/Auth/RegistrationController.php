@@ -4,7 +4,6 @@ use App\Commands\RegisterUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\RegistrationRequest;
-use App\StatsApp\Forms\RegistrationForm;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Laracasts\Flash\Flash;
