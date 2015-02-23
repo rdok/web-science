@@ -23,8 +23,12 @@ get('/', [
 /**
  * Resources for artists
  */
+post('artists/drop', [
+	'as'   => 'artists_drop',
+	'uses' => 'ArtistsController@drop'
+]);
 Route::resource('artists', 'ArtistsController', [
-	'only'  => ['index', 'destroy', 'store'],
+	'only'  => ['index', 'destroy', 'store', 'drop'],
 	'names' => [
 		'index'   => 'artists_path',
 		'destroy' => 'artists_destroy',
