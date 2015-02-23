@@ -15,6 +15,7 @@ $I->fillField('password_confirmation', 'secret');
 $I->click('Register');
 
 $I->amOnRoute('show_dashboard');
+
 $I->see('Welcome to StatsApp!');
 
 $I->seeRecord('users', [

@@ -62,7 +62,9 @@ class RegistrationController extends Controller {
 
 		Flash::overlay('Welcome to StatsApp!');
 
-		return view('show_dashboard'); // redirect back unless login page
+		$defaultUrl = route('show_dashboard');
+
+		return redirect()->intended($defaultUrl);
 	}
 
 	/**

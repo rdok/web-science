@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Http\Requests\SessionRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 use Laracasts\Flash\Flash;
 
 class SessionController extends Controller {
@@ -23,6 +24,8 @@ class SessionController extends Controller {
 	{
 		$title = "Login";
 
+		Session::reflash();
+
 		return view('auth.login', compact('title'));
 	}
 
@@ -39,7 +42,9 @@ class SessionController extends Controller {
 		{
 			Flash::message('Welcome back!');
 
-			return view('show_dashboard');
+			$defaultUrl = route('show_dashboard');
+
+			return redirect()->intended($defaultUrl);
 		}
 
 		Flash::error('Invalid email/password');
