@@ -22,8 +22,7 @@ class ArtistsController extends Controller {
 	{
 		$this->artistImporter = $artistImporter;
 
-		$this->middleware('auth', ['only' => [
-			'store', 'destroy', 'upload', 'drop']]);
+		$this->middleware('auth', ['only' => ['store', 'destroy']]);
 	}
 
 	/**
@@ -40,35 +39,11 @@ class ArtistsController extends Controller {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
 	public function store()
-	{
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-	}
-
-	public function upload()
 	{
 		if (Input::hasFile('artists'))
 		{
@@ -88,37 +63,12 @@ class ArtistsController extends Controller {
 		return redirect()->route('artists_path');
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 * @return Response
 	 */
-	public function destroy()
-	{
-	}
-
-	public function drop()
+	public function destroy($id)
 	{
 		Artist::truncate();
 
@@ -126,4 +76,5 @@ class ArtistsController extends Controller {
 
 		return redirect()->route('artists_path');
 	}
+
 }

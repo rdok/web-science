@@ -5,7 +5,6 @@ use App\Http\Requests;
 use App\Http\Requests\SessionRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Session;
 use Laracasts\Flash\Flash;
 
 class SessionController extends Controller {
@@ -40,7 +39,7 @@ class SessionController extends Controller {
 		{
 			Flash::success('Welcome back!');
 
-			return redirect()->intended(route('show_dashboard'))->withInput();
+			return redirect()->back()->withInput();
 		}
 
 		Flash::error('Invalid email/password');
@@ -48,38 +47,6 @@ class SessionController extends Controller {
 		return redirect()->back()->withInput();
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
 
 	/**
 	 * Remove the specified resource from storage.
@@ -92,7 +59,7 @@ class SessionController extends Controller {
 
 		Flash::success('You have been logged out!');
 
-		return redirect()->route('show_dashboard');
+		return redirect()->back();
 	}
 
 }

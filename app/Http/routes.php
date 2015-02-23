@@ -23,19 +23,12 @@ get('/', [
 /**
  * Resources for artists
  */
-delete('artists/drop', [
-	'as'   => 'artists_drop',
-	'uses' => 'ArtistsController@drop'
-]);
-post('artists/upload', [
-	'as'   => 'artists_upload',
-	'uses' => 'ArtistsController@upload'
-]);
 Route::resource('artists', 'ArtistsController', [
-	'only'  => ['index', 'artists_drop', 'artists_upload'],
+	'only'  => ['index', 'destroy', 'store'],
 	'names' => [
 		'index'   => 'artists_path',
-		'destroy' => 'artist_destroy',
+		'destroy' => 'artists_destroy',
+		'store'   => 'artists_store',
 	]
 ]);
 
