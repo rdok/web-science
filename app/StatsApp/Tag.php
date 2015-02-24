@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App\StatsApp;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,6 +8,6 @@ class Tag extends Model {
 
 	public function artists()
 	{
-		return $this->belongsToMany('App\Artist');
+		return $this->belongsToMany('App\StatsApp\Artist');
 	}
 }

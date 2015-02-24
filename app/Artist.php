@@ -23,6 +23,6 @@ class Artist extends Model {
 
 	public function tags()
 	{
-		return $this->belongsToMany('App\Tag', 'last_fm_user_tag_artist');
+		return $this->belongsToMany('App\StatsApp\Tag', 'last_fm_user_tag_artist');
 	}
 }

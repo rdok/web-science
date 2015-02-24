@@ -2,8 +2,8 @@
 
 use App\Artist;
 use App\Http\Requests;
+use App\StatsApp\Tag;
 use App\StatsApp\Transformers\TagTransformer;
-use App\Tag;
 
 class TagsController extends ApiController {
 
@@ -22,9 +22,12 @@ class TagsController extends ApiController {
 	 *
 	 * @param Artist $artist
 	 * @return Response
+	 * @internal param Tag $tag
 	 */
 	public function index(Artist $artist = null)
 	{
+		if ($artist->slug === null) return $this->respondNotFound();
+
 		$tags = $this->getTags($artist);
 
 		return $this->respond([
@@ -38,6 +41,7 @@ class TagsController extends ApiController {
 	 */
 	public function getTags(Artist $artist)
 	{
+
 		$tags = $artist ? $artist->tags : Tag::all();
 
 		return $tags;

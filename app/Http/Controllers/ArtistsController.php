@@ -11,8 +11,7 @@ use Laracasts\Flash\Flash;
  * Class ArtistsController
  * @package App\Http\Controllers
  */
-class ArtistsController extends Controller
-{
+class ArtistsController extends Controller {
 
 	protected $artistImporter;
 
@@ -23,7 +22,7 @@ class ArtistsController extends Controller
 	{
 		$this->artistImporter = $artistImporter;
 
-		$this->middleware('auth', ['only' => ['store', 'destroy', 'drop']]);
+		$this->middleware('auth', ['only' => ['store', 'destroy']]);
 	}
 
 	/**
@@ -36,7 +35,7 @@ class ArtistsController extends Controller
 		$title = "Artists";
 		$artists = Artist::paginate(100);
 
-		return view('artists.list', compact('title', 'secondTitle', 'artists'));
+		return view('artists.table', compact('title', 'secondTitle', 'artists'));
 	}
 
 	/**
@@ -46,8 +45,8 @@ class ArtistsController extends Controller
 	 */
 	public function store()
 	{
-		if (Input::hasFile('artists')) {
-
+		if (Input::hasFile('artists'))
+		{
 			$artistsFileInfo = Input::file('artists');
 
 			$artistsFile = File::get($artistsFileInfo->getRealPath());
@@ -70,11 +69,10 @@ class ArtistsController extends Controller
 	 */
 	public function destroy()
 	{
-		Artist::truncate();
+		truncate(new Artist);
 
 		Flash::success('Successfully deleted all artists database.');
 
 		return redirect()->back();
 	}
-
 }

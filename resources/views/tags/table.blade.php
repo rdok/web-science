@@ -25,9 +25,9 @@
                 <div class="box-body">
                     <div class="row">
                         @if (Auth::user())
-                            @include('artists._partials.user_actions')
+                            @include('tags._partials.authed_actions')
                         @else
-                            @include('artists._partials.guest_actions')
+                            @include('tags._partials.guest_actions')
                         @endif
                     </div>
                 </div>
@@ -40,28 +40,24 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">All Artists </h3>
+                    <h3 class="box-title">All Tags </h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <table id="artists-table" class="table table-bordered table-striped table-hover" width="100%"
+                    <table id="tags-table" class="table table-bordered table-striped table-hover" width="100%"
                            cellspacing="0">
                         <thead>
                         <tr>
                             <th>Name</th>
-                            <th>LastFM Url</th>
                             <th>Updated At</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        @foreach($artists as $artist)
+                        @foreach($tags as $tag)
                             <tr>
-                                <td>{!! $artist->name !!}</td>
-                                <td>
-                                    <a href="{!! url($artist->url) !!}" target="_blank"><i class="fa fa-lastfm"></i></a>
-                                </td>
-                                <td>{!! $artist->updated_at !!}</td>
+                                <td>{!! $tag->name !!}</td>
+                                <td>{!! $tag->created_at !!}</td>
                             </tr>
                         @endforeach
 
@@ -69,7 +65,6 @@
                         <tfoot>
                         <tr>
                             <th>Name</th>
-                            <th>LastFM Url</th>
                             <th>Updated At</th>
                         </tr>
                         </tfoot>
@@ -96,7 +91,7 @@
     <!-- page script -->
     <script type="text/javascript">
         $(function () {
-            $('#artists-table').dataTable()
+            $('#tags-table').dataTable()
             $('.tooltip-wrapper').tooltip({position: "bottom"})
         })
     </script>
