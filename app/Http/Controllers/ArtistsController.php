@@ -47,6 +47,7 @@ class ArtistsController extends Controller
 	public function store()
 	{
 		if (Input::hasFile('artists')) {
+
 			$artistsFileInfo = Input::file('artists');
 
 			$artistsFile = File::get($artistsFileInfo->getRealPath());
@@ -58,7 +59,7 @@ class ArtistsController extends Controller
 			return redirect()->route('artists_path');
 		}
 
-		Flash::error('Something went wrong with importing data.');
+		Flash::error('File artists.dat is missing.');
 
 		return redirect()->route('artists_path');
 	}
