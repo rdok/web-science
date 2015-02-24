@@ -47,7 +47,6 @@ class ArtistsController extends Controller {
 	{
 		if (Input::hasFile('artists'))
 		{
-
 			$artistsFileInfo = Input::file('artists');
 
 			$artistsFile = File::get($artistsFileInfo->getRealPath());

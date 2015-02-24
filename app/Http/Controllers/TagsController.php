@@ -1,14 +1,23 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\StatsApp\Importers\TagsImporter;
 use App\StatsApp\Tag;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
 use Laracasts\Flash\Flash;
 
 class TagsController extends Controller {
 
-	function __construct()
+	protected $tagsImporter;
+
+	/**
+	 * @param TagsImporter $tagImporter
+	 */
+	function __construct(TagsImporter $tagImporter)
 	{
+		$this->tagsImporter = $tagImporter;
+
 		$this->middleware('auth', ['only' => ['store', 'destroy']]);
 	}
 
@@ -20,7 +29,7 @@ class TagsController extends Controller {
 	public function index()
 	{
 		$title = "Tags";
-		$tags = Tag::all();
+		$tags = Tag::paginate(100);
 
 		return view('tags.table', compact('tags', 'title'));
 	}
@@ -33,7 +42,22 @@ class TagsController extends Controller {
 	 */
 	public function store()
 	{
-		return 'store tags';
+		if (Input::hasFile('tags'))
+		{
+			$tagsFileInfo = Input::file('tags');
+
+			$tagsFile = File::get($tagsFileInfo->getRealPath());
+
+			$this->tagsImporter->import($tagsFile);
+
+			Flash::success('Successfully imported tags data into database.');
+
+			return redirect()->route('tags_path');
+		}
+
+		Flash::error('File tags.dat is missing.');
+
+		return redirect()->back();
 	}
 
 	/**
@@ -45,7 +69,7 @@ class TagsController extends Controller {
 	 */
 	public function destroy(Tag $tag = null)
 	{
-		DB::statement("TRUNCATE TABLE tags CASCADE"); // postgresql
+		truncate(new Tag);
 
 		Flash::success('Successfully deleted all tags from database.');
 

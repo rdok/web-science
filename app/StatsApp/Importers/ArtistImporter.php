@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\DB;
 
 class ArtistImporter extends Importer {
 
-	public function import($artistsFile)
+	public function import($tagsFile)
 	{
-		$rawArtists = explode("\n", $artistsFile); // to array
+		$rawArtists = explode("\n", $tagsFile); // to array
 
 		$totalArtists = count($rawArtists) - 1; // -1 due to \n at last line
 
