@@ -11,7 +11,8 @@ use Laracasts\Flash\Flash;
  * Class ArtistsController
  * @package App\Http\Controllers
  */
-class ArtistsController extends Controller {
+class ArtistsController extends Controller
+{
 
 	protected $artistImporter;
 
@@ -45,8 +46,7 @@ class ArtistsController extends Controller {
 	 */
 	public function store()
 	{
-		if (Input::hasFile('artists'))
-		{
+		if (Input::hasFile('artists')) {
 			$artistsFileInfo = Input::file('artists');
 
 			$artistsFile = File::get($artistsFileInfo->getRealPath());
@@ -62,7 +62,6 @@ class ArtistsController extends Controller {
 
 		return redirect()->route('artists_path');
 	}
-
 
 	/**
 	 * Remove the specified resource from storage.
@@ -87,7 +86,7 @@ class ArtistsController extends Controller {
 
 		Flash::success('Successfully deleted all artists database.');
 
-		return redirect()->route('artists_path');
+		return redirect()->intended(route('artists_path'));
 	}
 
 }

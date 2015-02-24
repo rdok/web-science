@@ -1,7 +1,6 @@
 <?php
 
-Event::listen('App\Events\UserWasRegistered', function ($event)
-{
+Event::listen('App\Events\UserWasRegistered', function ($event) {
 //	dd("send mail notification"); use App\Providers\EventServiceProvider
 });
 
@@ -10,8 +9,7 @@ Event::listen('App\Events\UserWasRegistered', function ($event)
 //	return \App\User::whereUsername($username)->first();
 //});
 
-Event::listen('illuminate.query', function ($sql)
-{
+Event::listen('illuminate.query', function ($sql) {
 //	var_dump($sql);
 });
 
@@ -23,12 +21,13 @@ get('/', [
 /**
  * Resources for artists
  */
-post('artists/drop', [
+delete('artists/drop', [
 	'as'   => 'artists_drop',
 	'uses' => 'ArtistsController@drop'
 ]);
+
 Route::resource('artists', 'ArtistsController', [
-	'only'  => ['index', 'destroy', 'store', 'drop'],
+	'only'  => ['index', 'destroy', 'store'],
 	'names' => [
 		'index'   => 'artists_path',
 		'destroy' => 'artists_destroy',
