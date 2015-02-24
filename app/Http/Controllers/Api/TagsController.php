@@ -26,9 +26,17 @@ class TagsController extends ApiController {
 	 */
 	public function index(Artist $artist = null)
 	{
-		if ($artist->slug === null) return $this->respondNotFound();
+		if ($artist->id === null && $artist === null)
+		{
+			$tags = Tag::paginate(100);
+		} else if ($artist->slug === null)
+		{
+			return $this->respondNotFound();
+		} else
+		{
+			$tags = $this->getTags($artist);
+		}
 
-		$tags = $this->getTags($artist);
 
 		return $this->respond([
 			'data' => $this->tagTransformer->transformCollection($tags->all())
