@@ -20,7 +20,6 @@
 </div>
 
 <div class="col-md-6">
-    {!! Form::open(['method' => 'delete', 'route' => 'artists_drop']) !!}
     <div class="form-group">
         <div class="tooltip-wrapper"
              data-title="You need to login first">
@@ -29,5 +28,4 @@
             !!}
         </div>
     </div>
-    {!! Form::close() !!}
 </div>

@@ -15,7 +15,7 @@
 
 <div class="col-md-6">
     <fieldset {{ count($artists) !== 0 ?: 'disabled' }}>
-        {!! Form::open(['method' => 'delete', 'route' => 'artists_drop']) !!}
+        {!! Form::open(['method' => 'delete', 'route' => 'artists_destroy']) !!}
         <div class="form-group">
             <div class="tooltip-wrapper"
                  data-title="{{ count($artists) !== 0 ? 'Delete All Artists' : 'No artists on database to delete'}}">

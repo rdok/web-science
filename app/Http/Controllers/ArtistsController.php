@@ -73,20 +73,7 @@ class ArtistsController extends Controller
 
 		Flash::success('Successfully deleted all artists database.');
 
-		return redirect()->route('artists_path');
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 * @return Response
-	 */
-	public function drop()
-	{
-		Artist::truncate();
-
-		Flash::success('Successfully deleted all artists database.');
-
-		return redirect()->intended(route('artists_path'));
+		return redirect()->back();
 	}
 
 }

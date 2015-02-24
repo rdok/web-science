@@ -18,14 +18,6 @@ get('/', [
 	'uses' => 'WelcomeController@index'
 ]);
 
-/**
- * Resources for artists
- */
-delete('artists/drop', [
-	'as'   => 'artists_drop',
-	'uses' => 'ArtistsController@drop'
-]);
-
 Route::resource('artists', 'ArtistsController', [
 	'only'  => ['index', 'destroy', 'store'],
 	'names' => [
