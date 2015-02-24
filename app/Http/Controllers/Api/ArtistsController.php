@@ -1,10 +1,10 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Api;
 
 use App\Artist;
 use App\Http\Requests;
 use App\StatsApp\Transformers\ArtistTransformer;
 
-class ApiArtistsController extends ApiController {
+class ArtistsController extends ApiController {
 
 	protected $artistTransformer;
 
@@ -30,16 +30,6 @@ class ApiArtistsController extends ApiController {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
@@ -58,14 +48,13 @@ class ApiArtistsController extends ApiController {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int $id
+	 * @param Artist $artist
 	 * @return Response
+	 * @internal param int $slug
 	 */
-	public function show($id)
+	public function show(Artist $artist)
 	{
-		$artist = Artist::find($id);
-
-		if (!$artist)
+		if (!$artist->slug)
 		{
 			return $this->respondNotFound('Artist not found');
 		}
@@ -73,39 +62,6 @@ class ApiArtistsController extends ApiController {
 		return $this->respond([
 			'data' => $this->artistTransformer->transform($artist)
 		]);
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
 	}
 
 }

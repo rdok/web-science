@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateTagsTable extends Migration {
+class CreateLastfmuserFriendTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,11 @@ class CreateTagsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('tags', function (Blueprint $table)
+		Schema::create('last_fm_user_friend', function (Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('name')->unique();
+			$table->integer('last_fm_user_id')->unsigned()->index();
+			$table->foreign('last_fm_user_id')->references('id')->on('last_fm_users')->onDelete('cascade');
 			$table->timestamps();
 		});
 	}
@@ -27,7 +28,7 @@ class CreateTagsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('tags');
+		Schema::drop('last_fm_user_friend');
 	}
 
 }

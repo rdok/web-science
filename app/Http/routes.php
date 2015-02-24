@@ -1,34 +1,25 @@
 <?php
+//Event::listen('App\Events\UserWasRegistered', function ($event){	dd("send mail notification"); use App\Providers\EventServiceProvider});
+//Event::listen('illuminate.query', function ($sql){	var_dump($sql);});
 
-Event::listen('App\Events\UserWasRegistered', function ($event)
+Route::bind('artists', function ($slug)
 {
-//	dd("send mail notification"); use App\Providers\EventServiceProvider
+	return \App\Artist::where('slug', $slug)->first();
 });
 
-//Route::bind('users', function ($username)
+//Route::bind('artists', function ($slug)
 //{
-//	return \App\User::whereUsername($username)->first();
+//	return \App\Artist::where('slug', $slug)->first();
 //});
 
-Event::listen('illuminate.query', function ($sql)
-{
-//	var_dump($sql);
-});
 
 get('/', [
 	'as'   => 'show_dashboard',
 	'uses' => 'WelcomeController@index'
 ]);
 
-/**
- * Resources for artists
- */
-post('artists/drop', [
-	'as'   => 'artists_drop',
-	'uses' => 'ArtistsController@drop'
-]);
 Route::resource('artists', 'ArtistsController', [
-	'only'  => ['index', 'destroy', 'store', 'drop'],
+	'only'  => ['index', 'destroy', 'store'],
 	'names' => [
 		'index'   => 'artists_path',
 		'destroy' => 'artists_destroy',
@@ -39,16 +30,23 @@ Route::resource('artists', 'ArtistsController', [
 /**
  * API
  */
-Route::resource('api/v1/artists', 'ApiArtistsController', [
-	'only'  => ['index', 'store', 'show', 'destroy'],
-	'names' => [
-		'index'   => 'api_artists_path',
-		'store'   => 'api_artists_store',
-		'show'    => 'api_artist_show',
-		'destroy' => 'api_artists_destroy'
-	]
+
+get('api/v1/artists/{artists}/tags', [
+	'as'   => 'artist_tags',
+	'uses' => 'Api\TagsController@index'
+]);
+get('api/v1/tags', [
+	'as'   => 'tags_path',
+	'uses' => 'Api\TagsController@index'
 ]);
 
+Route::resource('api/v1/artists', 'Api\ArtistsController', [
+	'only'  => ['index', 'show',],
+	'names' => [
+		'index' => 'api_artists_path',
+		'show'  => 'api_artist_show',
+	]
+]);
 
 Route::resource('login', 'Auth\SessionController', [
 	'only'  => ['index', 'store'],
