@@ -8,7 +8,12 @@ class Artist extends Model {
 
 	public function bandMembers()
 	{
-		return $this->hasMany('App\BandMemeber');
+		return $this->hasMany('App\BandMember');
+	}
+
+	public function tags()
+	{
+		return $this->hasMany('App\Tag');
 	}
 
 	public function images()
