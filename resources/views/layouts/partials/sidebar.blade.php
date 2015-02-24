@@ -27,22 +27,26 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="treeview {!! set_active('show_dashboard') !!}">
+            <li class="treeview {!! set_active(['show_dashboard']) !!}">
                 <a href="{!! route('show_dashboard') !!}">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
             </li>
-            <li class="treeview {!! set_active('show_artists') !!}">
+            <li class="treeview {!! set_active(['artists_path', 'tags_path']) !!}">
                 <a href="#">
                     <i class="fa fa-lastfm"></i> <span>Raw Data</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{!! set_active('artists_path') !!}">
+                    <li class="{!! set_active(['artists_path']) !!}">
                         <a href="{!! route('artists_path') !!}">
                             <i class="fa fa-circle-o"></i> Artists
                         </a>
                     </li>
-                    <li class=""><a href="/"><i class="fa fa-circle-o"></i> Users</a></li>
+                    <li class="{!! set_active(['tags_path']) !!}">
+                        <a href="{!! route('tags_path') !!}">
+                            <i class="fa fa-circle-o"></i> Tags
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

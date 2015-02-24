@@ -2,8 +2,8 @@
 
 use App\Artist;
 use App\Http\Requests;
+use App\StatsApp\Tag;
 use App\StatsApp\Transformers\TagTransformer;
-use App\Tag;
 
 class TagsController extends ApiController {
 
@@ -22,6 +22,7 @@ class TagsController extends ApiController {
 	 *
 	 * @param Artist $artist
 	 * @return Response
+	 * @internal param Tag $tag
 	 */
 	public function index(Artist $artist = null)
 	{

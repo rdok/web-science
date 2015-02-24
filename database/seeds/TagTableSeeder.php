@@ -1,5 +1,5 @@
 <?php
-use App\Tag;
+use App\StatsApp\Tag;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 

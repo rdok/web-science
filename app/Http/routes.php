@@ -7,12 +7,6 @@ Route::bind('artists', function ($slug)
 	return \App\Artist::where('slug', $slug)->first();
 });
 
-//Route::bind('artists', function ($slug)
-//{
-//	return \App\Artist::where('slug', $slug)->first();
-//});
-
-
 get('/', [
 	'as'   => 'show_dashboard',
 	'uses' => 'WelcomeController@index'
@@ -27,16 +21,24 @@ Route::resource('artists', 'ArtistsController', [
 	]
 ]);
 
+Route::resource('tags', 'TagsController', [
+	'only'  => ['index', 'destroy', 'store'],
+	'names' => [
+		'index'   => 'tags_path',
+		'destroy' => 'tags_destroy',
+		'store'   => 'tags_store',
+	]
+]);
+
 /**
  * API
  */
-
 get('api/v1/artists/{artists}/tags', [
-	'as'   => 'artist_tags',
+	'as'   => 'api_artist_tags',
 	'uses' => 'Api\TagsController@index'
 ]);
 get('api/v1/tags', [
-	'as'   => 'tags_path',
+	'as'   => 'api_tags_path',
 	'uses' => 'Api\TagsController@index'
 ]);
 
