@@ -1,19 +1,17 @@
 <?php
+//Event::listen('App\Events\UserWasRegistered', function ($event){	dd("send mail notification"); use App\Providers\EventServiceProvider});
+//Event::listen('illuminate.query', function ($sql){	var_dump($sql);});
 
-Event::listen('App\Events\UserWasRegistered', function ($event)
+Route::bind('artists', function ($slug)
 {
-//	dd("send mail notification"); use App\Providers\EventServiceProvider
+	return \App\Artist::where('slug', $slug)->first();
 });
 
-//Route::bind('users', function ($username)
+//Route::bind('artists', function ($slug)
 //{
-//	return \App\User::whereUsername($username)->first();
+//	return \App\Artist::where('slug', $slug)->first();
 //});
 
-Event::listen('illuminate.query', function ($sql)
-{
-//	var_dump($sql);
-});
 
 get('/', [
 	'as'   => 'show_dashboard',
@@ -32,14 +30,23 @@ Route::resource('artists', 'ArtistsController', [
 /**
  * API
  */
-Route::resource('api/v1/artists', 'ApiArtistsController', [
+
+get('api/v1/artists/{artists}/tags', [
+	'as'   => 'artist_tags',
+	'uses' => 'Api\TagsController@index'
+]);
+get('api/v1/tags', [
+	'as'   => 'tags_path',
+	'uses' => 'Api\TagsController@index'
+]);
+
+Route::resource('api/v1/artists', 'Api\ArtistsController', [
 	'only'  => ['index', 'show',],
 	'names' => [
 		'index' => 'api_artists_path',
 		'show'  => 'api_artist_show',
 	]
 ]);
-
 
 Route::resource('login', 'Auth\SessionController', [
 	'only'  => ['index', 'store'],

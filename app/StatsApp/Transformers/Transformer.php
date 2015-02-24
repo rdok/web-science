@@ -16,9 +16,9 @@ abstract class Transformer {
 	}
 
 	/**
-	 * @param $item
+	 * @param $tag
 	 * @return array
 	 */
-	public abstract function transform($item);
+	public abstract function transform($tag);
 
 }

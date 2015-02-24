@@ -20,4 +20,9 @@ class Artist extends Model {
 	{
 		return $this->hasOne('App\Stat');
 	}
+
+	public function tags()
+	{
+		return $this->belongsToMany('App\Tag', 'last_fm_user_tag_artist');
+	}
 }

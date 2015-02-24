@@ -1,18 +1,19 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\Api;
 
 /**
  * @author Rizart Dokollari
  * @since 2/22/15
  */
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Response as IlluminateResponse;
+use Illuminate\Support\Facades\Response;
 
 
 /**
  * Class ApiController
  * @package App\Http\Controllers
  */
-class ApiController extends Controller
-{
+class ApiController extends Controller {
 
 	/**
 	 * @var int
