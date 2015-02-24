@@ -4,28 +4,23 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder {
+	private $tables = [
+		'users', 'password_resets',
+		'artists', 'similar_artists',
+		'last_fm_users', 'last_fm_user_friend',
+		'tags',
+		'last_fm_user_tag_artist',
+	];
 
 	/**
 	 * Run the database seeds.
 	 * For truncate/mysql use:
-	 *  DB::statement('SET FOREIGN_KEY_CHECKS=0');
-	 *  Artist::truncate();
-	 *  Tag::truncate();
-	 *  DB::table('artist_tag')->truncate();
-	 *  DB::statement('SET FOREIGN_KEY_CHECKS=1');
 	 * @return void
 	 */
 	public function run()
 	{
 		// postgress
-		DB::statement('TRUNCATE TABLE users CASCADE');
-		DB::statement('TRUNCATE TABLE password_resets CASCADE');
-		DB::statement('TRUNCATE TABLE similar_artists CASCADE');
-		DB::statement('TRUNCATE TABLE last_fm_users CASCADE');
-		DB::statement('TRUNCATE TABLE artists CASCADE');
-		DB::statement('TRUNCATE TABLE tags CASCADE');
-		DB::statement('TRUNCATE TABLE last_fm_user_friend');
-		DB::statement('TRUNCATE TABLE last_fm_user_tag_artist');
+		$this->cleanDatabase();
 
 		Model::unguard();
 
@@ -34,6 +29,17 @@ class DatabaseSeeder extends Seeder {
 		$this->call('LastFmUserFriendTableSeeder');
 		$this->call('TagTableSeeder');
 		$this->call('LastFmUserTagArtistTableSeeder');
+	}
+
+	public function cleanDatabase()
+	{
+		// DB::statement('SET FOREIGN_KEY_CHECKS=0'); // mysql
+		foreach ($this->tables as $tableName)
+		{
+			DB::statement("TRUNCATE TABLE $tableName CASCADE"); // postgresql
+			// DB::table($tableName)->truncate(); // mysql
+		}
+		// DB::statement('SET FOREIGN_KEY_CHECKS=1'); // mysql
 	}
 
 }
