@@ -22,11 +22,12 @@ class DatabaseSeeder extends Seeder {
 
 		Model::unguard();
 
-		$this->call('ArtistTableSeeder');
+		$this->call('ArtistsTableSeeder');
 		$this->call('LastFmUsersTableSeeder');
+		$this->call('TagsTableSeeder');
+
 		$this->call('LastFmUserArtistTableSeeder');
 		$this->call('LastFmUserFriendTableSeeder');
-		$this->call('TagTableSeeder');
 		$this->call('LastFmUserTagArtistTableSeeder');
 	}
 

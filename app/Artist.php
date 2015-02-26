@@ -13,7 +13,7 @@ class Artist extends Model {
 
 	public function tags()
 	{
-		return $this->hasMany('App\Tag');
+		return $this->belongsToMany('App\StatsApp\Tag', 'last_fm_user_tag_artist');
 	}
 
 	public function images()
@@ -26,8 +26,4 @@ class Artist extends Model {
 		return $this->hasOne('App\Stat');
 	}
 
-	public function tags()
-	{
-		return $this->belongsToMany('App\StatsApp\Tag', 'last_fm_user_tag_artist');
-	}
 }
