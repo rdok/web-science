@@ -1,5 +1,5 @@
 <?php
-use App\Artist;
+use App\Tag;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
  * @author Rizart Dokollari
  * @since 2/22/15
  */
-class ArtistTableSeeder extends Seeder {
+class TagsTableSeeder extends Seeder {
 
 	public function run()
 	{
@@ -15,10 +15,8 @@ class ArtistTableSeeder extends Seeder {
 
 		foreach (range(1, 100) as $index)
 		{
-			Artist::create([
-				'slug' => $faker->unique()->userName,
-				'name' => $faker->name,
-				'url'  => $faker->url
+			Tag::create([
+				'name' => $faker->unique()->word,
 			]);
 		}
 	}

@@ -8,5 +8,4 @@ class LastFmUser extends Model {
 	{
 		return $this->belongsToMany('LastFmUser', 'last_fm_user_friends', 'last_fm_user_id', 'friend_id');
 	}
-
 }
