@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('ArtistTableSeeder');
 		$this->call('LastFmUsersTableSeeder');
+		$this->call('LastFmUserArtistTableSeeder');
 		$this->call('LastFmUserFriendTableSeeder');
 		$this->call('TagTableSeeder');
 		$this->call('LastFmUserTagArtistTableSeeder');
@@ -33,7 +34,7 @@ class DatabaseSeeder extends Seeder {
 	{
 		foreach ($this->tables as $tableName)
 		{
-			DB::statement("TRUNCATE TABLE $tableName CASCADE"); // postgresql
+			truncateByTable($tableName);
 		}
 	}
 

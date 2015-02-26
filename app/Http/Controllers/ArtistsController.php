@@ -69,7 +69,7 @@ class ArtistsController extends Controller {
 	 */
 	public function destroy()
 	{
-		truncate(new Artist);
+		truncateByModel(new Artist);
 
 		Flash::success('Successfully deleted all artists database.');
 
