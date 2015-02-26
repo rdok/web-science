@@ -19,15 +19,9 @@ function set_active($routes, $active = 'active')
 	return;
 }
 
-/**
- * Truncate for different db relational systems
- * @param $model
- */
-function truncate($model)
+function truncateByTable($table)
 {
 	$dbConnection = env('DB_CONNECTION');
-
-	$table = with($model)->getTable();
 
 	if (strcmp($dbConnection, 'pgsql') === 0)
 	{
@@ -38,4 +32,15 @@ function truncate($model)
 		DB::table($table)->truncate(); // mysql
 		DB::statement('SET FOREIGN_KEY_CHECKS=1'); // mysql
 	}
+}
+
+/**
+ * Truncate for different db relational systems
+ * @param $model
+ */
+function truncateByModel($model)
+{
+	$table = with($model)->getTable();
+
+	truncateByTable($table);
 }

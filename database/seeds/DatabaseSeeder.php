@@ -14,18 +14,17 @@ class DatabaseSeeder extends Seeder {
 
 	/**
 	 * Run the database seeds.
-	 * For truncate/mysql use:
 	 * @return void
 	 */
 	public function run()
 	{
-		// postgress
 		$this->cleanDatabase();
 
 		Model::unguard();
 
 		$this->call('ArtistTableSeeder');
 		$this->call('LastFmUsersTableSeeder');
+		$this->call('LastFmUserArtistTableSeeder');
 		$this->call('LastFmUserFriendTableSeeder');
 		$this->call('TagTableSeeder');
 		$this->call('LastFmUserTagArtistTableSeeder');
@@ -33,13 +32,10 @@ class DatabaseSeeder extends Seeder {
 
 	public function cleanDatabase()
 	{
-		// DB::statement('SET FOREIGN_KEY_CHECKS=0'); // mysql
 		foreach ($this->tables as $tableName)
 		{
-			DB::statement("TRUNCATE TABLE $tableName CASCADE"); // postgresql
-			// DB::table($tableName)->truncate(); // mysql
+			truncateByTable($tableName);
 		}
-		// DB::statement('SET FOREIGN_KEY_CHECKS=1'); // mysql
 	}
 
 }

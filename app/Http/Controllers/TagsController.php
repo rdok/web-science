@@ -69,7 +69,7 @@ class TagsController extends Controller {
 	 */
 	public function destroy(Tag $tag = null)
 	{
-		truncate(new Tag);
+		truncateByModel(new Tag);
 
 		Flash::success('Successfully deleted all tags from database.');
 
