@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
  * @author Rizart Dokollari
  * @since 2/22/15
  */
-class TagsImporter extends Importer {
+class TagsImporter extends Importer
+{
 
 	public function import($tagsFile)
 	{
@@ -19,13 +20,13 @@ class TagsImporter extends Importer {
 
 		for ($i = 1; $i < $totalTags; $i++) // first line contains labels; omit them
 		{
-			list($id, $name) = explode("\t", $rawTags[ $i ]);
+			list($id, $name) = explode("\t", $rawTags[$i]);
 
 			$now = Carbon::now();
 
 			$tags[] = [
-				'id'         => $id,
-				'name'       => $name,
+				'id' => $id,
+				'name' => htmlspecialchars($name, ENT_SUBSTITUTE, "UTF-8"),
 				'created_at' => $now,
 				'updated_at' => $now
 			];

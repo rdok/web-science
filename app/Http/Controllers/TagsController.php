@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Laracasts\Flash\Flash;
 
-class TagsController extends Controller {
+class TagsController extends Controller
+{
 
 	protected $tagsImporter;
 
@@ -29,6 +30,7 @@ class TagsController extends Controller {
 	public function index()
 	{
 		$title = "Tags";
+		// TODO: decode tags names. see: http://laravel-recipes.com/recipes/182/decoding-html-entities-to-a-string
 		$tags = Tag::paginate(100);
 
 		return view('tags.table', compact('tags', 'title'));
