@@ -15,7 +15,7 @@ class LastFmUserTaggedArtistTagTableSeeder extends Seeder {
 	{
 		$faker = Faker::create();
 
-		$lessonIds = Artist::lists('id');
+		$artistsId = Artist::lists('id');
 		$tagIds = Tag::lists('id');
 		$user_last_fm_Ids = LastFmUser::lists('id');
 
@@ -25,7 +25,7 @@ class LastFmUserTaggedArtistTagTableSeeder extends Seeder {
 			// a real lesson id
 			// a real tag id
 			DB::table('artist_tag')->insert([
-				'artist_id'       => $faker->randomElement($lessonIds),
+				'artist_id'       => $faker->randomElement($artistsId),
 				'tag_id'          => $faker->randomElement($tagIds),
 				'last_fm_user_id' => $faker->randomElement($user_last_fm_Ids)
 			]);

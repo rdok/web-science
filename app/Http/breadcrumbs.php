@@ -25,3 +25,18 @@ Breadcrumbs::register('tags_path', function ($breadcrumbs)
 
 	$breadcrumbs->push("Tags", route('tags_path'));
 });
+
+// Home > [Tags]
+Breadcrumbs::register('tags_path', function ($breadcrumbs)
+{
+	$breadcrumbs->parent('show_dashboard');
+
+	$breadcrumbs->push("Tags", route('tags_path'));
+});
+// Home > [LastFm Users]
+Breadcrumbs::register('last_fm_users_path', function ($breadcrumbs)
+{
+	$breadcrumbs->parent('show_dashboard');
+
+	$breadcrumbs->push("LastFm Users", route('last_fm_users_path'));
+});

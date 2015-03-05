@@ -26,4 +26,7 @@ class Artist extends Model {
 		return $this->hasOne('App\Stat');
 	}
 
+	public function lastFmUsers(){
+		return $this->hasMany('App\LastFmUser');
+	}
 }

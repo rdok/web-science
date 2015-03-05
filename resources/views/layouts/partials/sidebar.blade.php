@@ -32,7 +32,7 @@
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
             </li>
-            <li class="treeview {!! set_active(['artists_path', 'tags_path']) !!}">
+            <li class="treeview {!! set_active(['artists_path', 'tags_path', 'last_fm_users_path']) !!}">
                 <a href="#">
                     <i class="fa fa-lastfm"></i> <span>Raw Data</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
@@ -45,6 +45,11 @@
                     <li class="{!! set_active(['tags_path']) !!}">
                         <a href="{!! route('tags_path') !!}">
                             <i class="fa fa-circle-o"></i> Tags
+                        </a>
+                    </li>
+                    <li class="{!! set_active(['last_fm_users_path']) !!}">
+                        <a href="{!! route('last_fm_users_path') !!}">
+                            <i class="fa fa-circle-o"></i> LastFM Users
                         </a>
                     </li>
                 </ul>

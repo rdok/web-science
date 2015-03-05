@@ -21,6 +21,15 @@ Route::resource('artists', 'ArtistsController', [
 	]
 ]);
 
+Route::resource('lastfm-users', 'LastFmUsersController', [
+	'only'  => ['index', 'destroy', 'store'],
+	'names' => [
+		'index'   => 'last_fm_users_path',
+		'destroy' => 'last_fm_users_destroy',
+		'store'   => 'last_fm_users_store',
+	]
+]);
+
 Route::resource('tags', 'TagsController', [
 	'only'  => ['index', 'destroy', 'store'],
 	'names' => [
