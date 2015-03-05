@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Artist;
 use App\Http\Requests;
 use App\LastFmUser;
 use App\StatsApp\Importers\LastFmUserImporter;
@@ -41,6 +42,14 @@ class LastFmUsersController extends Controller
 	 */
 	public function store()
 	{
+		// if artists table is empty genreate exception import artsit first
+		if (Artist::all()->isEmpty())
+		{
+			Flash::error('Artist data is required. Import artist.dat first');
+
+			return redirect()->back();
+		}
+
 		if (Input::hasFile('lastFmUserArtist'))
 		{
 			$lastFmUserArtistFileInfo = Input::file('lastFmUserArtist');
@@ -55,8 +64,6 @@ class LastFmUsersController extends Controller
 		}
 
 		Flash::error('File user_artists.dat is missing.');
-
-		dd(Input::all());
 
 		return redirect()->route('last_fm_users_path');
 	}

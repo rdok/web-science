@@ -2,7 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Artist extends Model {
+class Artist extends Model
+{
 
 	protected $fillable = ['slug', 'name', 'mbid', 'url', 'streamable', 'on_tour'];
 
@@ -26,7 +27,8 @@ class Artist extends Model {
 		return $this->hasOne('App\Stat');
 	}
 
-	public function lastFmUsers(){
+	public function lastFmUsers()
+	{
 		return $this->hasMany('App\LastFmUser');
 	}
 }

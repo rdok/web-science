@@ -40,7 +40,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">All Artists </h3>
+                    <h3 class="box-title">All LastFm Users </h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -48,19 +48,19 @@
                            cellspacing="0">
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>LastFM Url</th>
-                            <th>Updated At</th>
+                            <th>Id</th>
+                            <th>Artist Id</th>
+                            <th>Weight</th>
+                            <th>Updated at</th>
                         </tr>
                         </thead>
                         <tbody>
 
                         @foreach($lastFmUsers as $lastFmUser)
                             <tr>
-                                <td>{!! $lastFmUser->name !!}</td>
-                                <td>
-                                    <a href="{!! url($lastFmUser->url) !!}" target="_blank"><i class="fa fa-lastfm"></i></a>
-                                </td>
+                                <td>{!! $lastFmUser->id !!}</td>
+                                <td>{!! $lastFmUser->artist_id !!}</td>
+                                <td>{!! $lastFmUser->listen_count !!}</td>
                                 <td>{!! $lastFmUser->updated_at !!}</td>
                             </tr>
                         @endforeach
@@ -68,9 +68,10 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th>Name</th>
-                            <th>LastFM Url</th>
-                            <th>Updated At</th>
+                            <th>Id</th>
+                            <th>Artist Id</th>
+                            <th>Weight</th>
+                            <th>Updated at</th>
                         </tr>
                         </tfoot>
                     </table>

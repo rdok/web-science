@@ -25,19 +25,19 @@ class LastFmUserImporter extends Importer
 			$now = Carbon::now();
 
 			$userArtist[] = [
-				'externalUserId'   => $userId,
-				'externalArtistId' => $artistId,
-				'weight'           => $weight,
+				'last_fm_users_id' => $userId,
+				'artist_id'        => $artistId,
+				'listen_count'     => $weight,
 				'created_at'       => $now,
 				'updated_at'       => $now
 			];
 		}
 
-		$artistChunk = array_chunk($userArtist, 200);
+		$lastFmUserArtist = array_chunk($userArtist, 200);
 
-		foreach ($artistChunk as $chunk)
+		foreach ($lastFmUserArtist as $chunk)
 		{
-			DB::table('artists')->insert($chunk);
+			DB::table('last_fm_user_artist')->insert($chunk);
 		}
 	}
 }

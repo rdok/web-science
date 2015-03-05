@@ -1,6 +1,6 @@
 <div class="col-md-6">
     <fieldset {{ count($lastFmUsers) === 0 ?: 'disabled' }}>
-        {!! Form::open(['route' => 'lastFmUsers_store', 'files' => true, 'class' => 'form-inline']) !!}
+        {!! Form::open(['route' => 'last_fm_users_store', 'files' => true, 'class' => 'form-inline']) !!}
         <div class="form-group">
             {!! Form::file('lastFmUsers', ['class' => 'filestyle btn btn-app', 'data-badge' => 'false', 'data-input' =>
             'false',
