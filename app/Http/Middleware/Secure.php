@@ -15,7 +15,9 @@ class Secure
 	 */
 	public function handle($request, Closure $next)
 	{
-		if ((App::environment('production') && $request->header('x-forwarded-proto') <> 'https') || !$request->secure())
+		if ((App::environment('production') && $request->header('x-forwarded-proto') <> 'https') ||
+			!App::environment('production') && !$request->secure()
+		)
 		{
 			return redirect()->secure($request->getRequestUri());
 		}
