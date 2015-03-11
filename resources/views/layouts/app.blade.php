@@ -5,19 +5,19 @@
     <title>StatsApp | {!! $title !!} </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
-    {!! HTML::style('packages/bower/bootstrap/dist/css/bootstrap.min.css') !!}
+    {!! HTML::style('packages/bower/bootstrap/dist/css/bootstrap.min.css', true) !!}
     <!-- Font Awesome Icons -->
-    {!! HTML::style('packages/bower/fontawesome/css/font-awesome.min.css') !!}
+    {!! HTML::style('packages/bower/fontawesome/css/font-awesome.min.css', true) !!}
     <!-- Ionicons -->
-    {!! HTML::style('packages/bower/ionicons/css/ionicons.min.css') !!}
+    {!! HTML::style('packages/bower/ionicons/css/ionicons.min.css', true) !!}
 
     @yield('styles')
 
     <!-- AdminLTE -->
-    {!! HTML::style('css/AdminLTE/AdminLTE.min.css') !!}
-    {!! HTML::style('css/skins/skin-black.min.css') !!}
+    {!! HTML::style('css/AdminLTE/AdminLTE.min.css', true) !!}
+    {!! HTML::style('css/skins/skin-black.min.css', true) !!}
 
-    {!! HTML::style('css/app.css') !!}
+    {!! HTML::style('css/app.css', true) !!}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -59,13 +59,13 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-{!! HTML::script('packages/bower/jquery/dist/jquery.min.js') !!}
+{!! HTML::script('packages/bower/jquery/dist/jquery.min.js', true) !!}
 <!-- Bootstrap -->
-{!! HTML::script('packages/bower/bootstrap/dist/js/bootstrap.min.js') !!}
+{!! HTML::script('packages/bower/bootstrap/dist/js/bootstrap.min.js', true) !!}
 <!-- FastClick -->
-{!! HTML::script('packages/bower/fastclick/lib/fastclick.js') !!}
+{!! HTML::script('packages/bower/fastclick/lib/fastclick.js', true) !!}
 <!-- AdminLTE App -->
-{!! HTML::script('js/app.min.js') !!}
+{!! HTML::script('js/app.min.js', true) !!}
 <script>$('#flash-overlay-modal').modal();</script>
 @yield('scripts')
 </body>
