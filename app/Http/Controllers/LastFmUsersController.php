@@ -2,21 +2,21 @@
 
 use App\Http\Requests;
 use App\LastFmUser;
-use App\StatsApp\Importers\LastFmUserImporter;
+use App\StatsApp\Importers\LastFmUserArtistsImporter;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Laracasts\Flash\Flash;
 
 class LastFmUsersController extends Controller
 {
-	protected $lastFmUsersImporter;
+	protected $lastFmUserArtistsImporter;
 
 	/**
-	 * @param LastFmUserImporter $lastFmUserImporter
+	 * @param LastFmUserArtistsImporter $lastFmUserArtistsImporter
 	 */
-	function __construct(LastFmUserImporter $lastFmUserImporter)
+	function __construct(LastFmUserArtistsImporter $lastFmUserArtistsImporter)
 	{
-		$this->lastFmUsersImporter = $lastFmUserImporter;
+		$this->lastFmUserArtistsImporter = $lastFmUserArtistsImporter;
 
 		$this->middleware('auth', ['only' => ['store', 'destroy']]);
 	}
@@ -55,7 +55,7 @@ class LastFmUsersController extends Controller
 
 			$lastFmUserArtistsFile = File::get($lastFmUserArtistFileInfo->getRealPath());
 
-			$this->lastFmUsersImporter->import($lastFmUserArtistsFile);
+			$this->lastFmUserArtistsImporter->import($lastFmUserArtistsFile);
 
 			Flash::success('Successfully imported artists data into database.');
 
