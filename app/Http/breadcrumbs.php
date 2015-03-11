@@ -33,6 +33,13 @@ Breadcrumbs::register('tags_path', function ($breadcrumbs)
 
 	$breadcrumbs->push("Tags", route('tags_path'));
 });
+// Home > [LastFm Users Artists]
+Breadcrumbs::register('last_fm_users_artists_path', function ($breadcrumbs)
+{
+	$breadcrumbs->parent('show_dashboard');
+
+	$breadcrumbs->push("LastFm Users Artists", route('last_fm_users_artists_path'));
+});
 // Home > [LastFm Users]
 Breadcrumbs::register('last_fm_users_path', function ($breadcrumbs)
 {

@@ -49,30 +49,22 @@
                         <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Artist Id</th>
-                            <th>Weight</th>
                             <th>Updated at</th>
                         </tr>
                         </thead>
                         <tbody>
 
                         @foreach($lastFmUsers as $lastFmUser)
-                            @foreach($lastFmUser->artists as $artist)
-                                <tr>
-                                    <td>{!! $lastFmUser->id !!}</td>
-                                    <td>{!! $artist->id !!}</td>
-                                    <td>{!! $artist->pivot->listen_count !!}</td>
-                                    <td>{!! $lastFmUser->updated_at !!}</td>
-                                </tr>
-                            @endforeach
+                            <tr>
+                                <td>{!! $lastFmUser->id !!}</td>
+                                <td>{!! $lastFmUser->updated_at !!}</td>
+                            </tr>
                         @endforeach
 
                         </tbody>
                         <tfoot>
                         <tr>
                             <th>Id</th>
-                            <th>Artist Id</th>
-                            <th>Weight</th>
                             <th>Updated at</th>
                         </tr>
                         </tfoot>

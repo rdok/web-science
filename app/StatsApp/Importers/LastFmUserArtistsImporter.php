@@ -1,6 +1,5 @@
 <?php namespace App\StatsApp\Importers;
 
-use App\LastFmUser;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 

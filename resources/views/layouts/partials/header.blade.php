@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="#" class="logo"><b>Stats</b>App</a>
+    <a href="{!! route('show_dashboard') !!}" class="logo"><b>Stats</b>App</a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->

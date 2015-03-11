@@ -21,12 +21,21 @@ Route::resource('artists', 'ArtistsController', [
 	]
 ]);
 
+
+Route::resource('lastfm-users/artists', 'LastFmUsersArtistsController', [
+	'only'  => ['index', 'destroy', 'store'],
+	'names' => [
+		'index'   => 'last_fm_users_artists_path',
+		'destroy' => 'last_fm_users_artists_destroy',
+		'store'   => 'last_fm_users_artists_store',
+	]
+]);
+
 Route::resource('lastfm-users', 'LastFmUsersController', [
 	'only'  => ['index', 'destroy', 'store'],
 	'names' => [
 		'index'   => 'last_fm_users_path',
 		'destroy' => 'last_fm_users_destroy',
-		'store'   => 'last_fm_users_store',
 	]
 ]);
 
