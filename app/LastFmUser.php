@@ -12,7 +12,7 @@ class LastFmUser extends Model
 
 	public function artists()
 	{
-		return $this->belongsToMany('App\Artist', 'last_fm_user_artist', 'last_fm_users_id', 'artist_id');
+		return $this->belongsToMany('App\Artist', 'last_fm_user_artist', 'last_fm_users_id', 'artist_id')->withPivot('listen_count');
 	}
 
 }

@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-use App\Artist;
 use App\Http\Requests;
 use App\LastFmUser;
 use App\StatsApp\Importers\LastFmUserImporter;
@@ -39,11 +38,11 @@ class LastFmUsersController extends Controller
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
+	// if artists table is empty generate exception import artsit first
+	 * if (Artist::all()->isEmpty())
 	 */
 	public function store()
 	{
-		// if artists table is empty genreate exception import artsit first
-		if (Artist::all()->isEmpty())
 		{
 			Flash::error('Artist data is required. Import artist.dat first');
 
