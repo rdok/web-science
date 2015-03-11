@@ -7,7 +7,8 @@ use Illuminate\Database\Seeder;
  * @author Rizart Dokollari
  * @since 2/22/15
  */
-class LastFmUserFriendTableSeeder extends Seeder {
+class LastFmUserFriendTableSeeder extends Seeder
+{
 
 	public function run()
 	{
@@ -19,6 +20,7 @@ class LastFmUserFriendTableSeeder extends Seeder {
 		{
 			DB::table('last_fm_user_friend')->insert([
 				'last_fm_user_id' => $faker->randomElement($usersId),
+				'friend_id'       => $faker->randomElement($usersId),
 				'created_at'      => $faker->dateTimeThisDecade(),
 				'updated_at'      => $faker->dateTimeThisDecade()
 			]);

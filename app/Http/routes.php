@@ -41,6 +41,7 @@ Route::group(['prefix' => 'lastfm'], function ()
 			]
 		]);
 	});
+	// end with prefix 'users'
 	Route::resource('artists', 'LastFm\ArtistsController', [
 		'only'  => ['index', 'destroy', 'store'],
 		'names' => [
@@ -49,7 +50,7 @@ Route::group(['prefix' => 'lastfm'], function ()
 			'store'   => 'artists_store',
 		]
 	]);
-	Route::resource('tags', 'TagsController', [
+	Route::resource('tags', 'LastFm\TagsController', [
 		'only'  => ['index', 'destroy', 'store'],
 		'names' => [
 			'index'   => 'tags_path',

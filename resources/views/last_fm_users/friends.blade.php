@@ -49,19 +49,17 @@
                         <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Artist Id</th>
-                            <th>Weight</th>
+                            <th>Friend Id</th>
                             <th>Updated at</th>
                         </tr>
                         </thead>
                         <tbody>
 
                         @foreach($lastFmUsers as $lastFmUser)
-                            @foreach($lastFmUser->artists as $artist)
+                            @foreach($lastFmUser->friends as $friend)
                                 <tr>
                                     <td>{!! $lastFmUser->id !!}</td>
-                                    <td>{!! $artist->id !!}</td>
-                                    <td>{!! $artist->pivot->listen_count !!}</td>
+                                    <td>{!! $friend->id !!}</td>
                                     <td>{!! $lastFmUser->updated_at !!}</td>
                                 </tr>
                             @endforeach
@@ -71,8 +69,7 @@
                         <tfoot>
                         <tr>
                             <th>Id</th>
-                            <th>Artist Id</th>
-                            <th>Weight</th>
+                            <th>Friend Id</th>
                             <th>Updated at</th>
                         </tr>
                         </tfoot>

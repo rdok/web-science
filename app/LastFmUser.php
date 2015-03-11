@@ -7,7 +7,7 @@ class LastFmUser extends Model
 
 	public function friends()
 	{
-		return $this->belongsToMany('LastFmUser', 'last_fm_user_friends', 'last_fm_user_id', 'friend_id');
+		return $this->belongsToMany('App\LastFmUser', 'last_fm_user_friend', 'last_fm_user_id', 'friend_id');
 	}
 
 	public function artists()
