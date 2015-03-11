@@ -1,6 +1,7 @@
 <?php namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\App;
 
 class Secure
 {
@@ -14,8 +15,7 @@ class Secure
 	 */
 	public function handle($request, Closure $next)
 	{
-		// see http://stackoverflow.com/a/25095936
-		if (($request->header('x-forwarded-proto') <> 'https'))
+		if ((App::environment('production') && $request->header('x-forwarded-proto') <> 'https') || !$request->secure())
 		{
 			return redirect()->secure($request->getRequestUri());
 		}
