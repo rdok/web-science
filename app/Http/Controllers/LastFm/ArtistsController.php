@@ -1,6 +1,7 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\LastFm;
 
 use App\Artist;
+use App\Http\Controllers\Controller;
 use App\StatsApp\Importers\ArtistImporter;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
@@ -11,7 +12,8 @@ use Laracasts\Flash\Flash;
  * Class ArtistsController
  * @package App\Http\Controllers
  */
-class ArtistsController extends Controller {
+class ArtistsController extends Controller
+{
 
 	protected $artistImporter;
 

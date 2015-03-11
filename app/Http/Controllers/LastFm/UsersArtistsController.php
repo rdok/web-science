@@ -1,6 +1,7 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\LastFm;
 
 use App\Artist;
+use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\LastFmUser;
 use App\StatsApp\Importers\LastFmUserArtistsImporter;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Laracasts\Flash\Flash;
 
-class LastFmUsersArtistsController extends Controller
+class UsersArtistsController extends Controller
 {
 	protected $lastFmUserArtistsImporter;
 	protected $lastFmUserImporter;
@@ -33,10 +34,10 @@ class LastFmUsersArtistsController extends Controller
 	 */
 	public function index()
 	{
-		$title = "LastFm Users";
+		$title = "LastFm Users Artists";
 		$lastFmUsers = LastFmUser::paginate(10);
 
-		return view('last_fm_users.artists_table', compact('title', 'secondTitle', 'lastFmUsers'));
+		return view('last_fm_users.artists', compact('title', 'secondTitle', 'lastFmUsers'));
 	}
 
 	/**
@@ -74,20 +75,19 @@ class LastFmUsersArtistsController extends Controller
 
 		Flash::success('Successfully imported user artists data into database.');
 
-		return redirect()->route('last_fm_users_path');
+		return redirect()->back();
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
 		truncateByModel(new LastFmUser);
 
-		Flash::success('Successfully deleted all lastfm users from database.');
+		Flash::success('Successfully deleted all LastFm Users from database.');
 
 		return redirect()->back();
 	}

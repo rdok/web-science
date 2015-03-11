@@ -33,6 +33,7 @@ Breadcrumbs::register('tags_path', function ($breadcrumbs)
 
 	$breadcrumbs->push("Tags", route('tags_path'));
 });
+
 // Home > [LastFm Users Artists]
 Breadcrumbs::register('last_fm_users_artists_path', function ($breadcrumbs)
 {
@@ -40,10 +41,19 @@ Breadcrumbs::register('last_fm_users_artists_path', function ($breadcrumbs)
 
 	$breadcrumbs->push("LastFm Users Artists", route('last_fm_users_artists_path'));
 });
+
 // Home > [LastFm Users]
 Breadcrumbs::register('last_fm_users_path', function ($breadcrumbs)
 {
 	$breadcrumbs->parent('show_dashboard');
 
 	$breadcrumbs->push("LastFm Users", route('last_fm_users_path'));
+});
+
+// Home > [LastFm Users friends]
+Breadcrumbs::register('last_fm_users_friends_path', function ($breadcrumbs)
+{
+	$breadcrumbs->parent('show_dashboard');
+
+	$breadcrumbs->push("LastFm Users Friends", route('last_fm_users_friends_path'));
 });

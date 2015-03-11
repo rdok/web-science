@@ -31,7 +31,7 @@ class LastFmUserArtistsImporter extends Importer
 			];
 		}
 
-		$lastFmUserArtists = array_chunk($lastFmUserArtists, 200);
+		$lastFmUserArtists = array_chunk($lastFmUserArtists, 1000);
 
 		foreach ($lastFmUserArtists as $lastFmUserArtistsChunk)
 		{

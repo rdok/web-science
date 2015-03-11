@@ -25,9 +25,9 @@
                 <div class="box-body">
                     <div class="row">
                         @if (Auth::user())
-                            @include('last_fm_users._partials.authed_actions')
+                            @include('last_fm_users._partials.authorized_actions.artists')
                         @else
-                            @include('last_fm_users._partials.guest_actions')
+                            @include('last_fm_users._partials.unauthorized_actions.artists')
                         @endif
                     </div>
                 </div>
@@ -49,22 +49,30 @@
                         <thead>
                         <tr>
                             <th>Id</th>
+                            <th>Artist Id</th>
+                            <th>Weight</th>
                             <th>Updated at</th>
                         </tr>
                         </thead>
                         <tbody>
 
                         @foreach($lastFmUsers as $lastFmUser)
-                            <tr>
-                                <td>{!! $lastFmUser->id !!}</td>
-                                <td>{!! $lastFmUser->updated_at !!}</td>
-                            </tr>
+                            @foreach($lastFmUser->artists as $artist)
+                                <tr>
+                                    <td>{!! $lastFmUser->id !!}</td>
+                                    <td>{!! $artist->id !!}</td>
+                                    <td>{!! $artist->pivot->listen_count !!}</td>
+                                    <td>{!! $lastFmUser->updated_at !!}</td>
+                                </tr>
+                            @endforeach
                         @endforeach
 
                         </tbody>
                         <tfoot>
                         <tr>
                             <th>Id</th>
+                            <th>Artist Id</th>
+                            <th>Weight</th>
                             <th>Updated at</th>
                         </tr>
                         </tfoot>

@@ -12,41 +12,53 @@ get('/', [
 	'uses' => 'WelcomeController@index'
 ]);
 
-Route::resource('artists', 'ArtistsController', [
-	'only'  => ['index', 'destroy', 'store'],
-	'names' => [
-		'index'   => 'artists_path',
-		'destroy' => 'artists_destroy',
-		'store'   => 'artists_store',
-	]
-]);
 
+Route::group(['prefix' => 'lastfm'], function ()
+{
+	Route::group(['prefix' => 'users'], function ()
+	{
+		Route::resource('/', 'LastFm\UsersController', [
+			'only'  => ['index', 'destroy', 'store'],
+			'names' => [
+				'index'   => 'last_fm_users_path',
+				'destroy' => 'last_fm_users_destroy',
+			]
+		]);
+		Route::resource('friends', 'LastFm\UsersFriendsController', [
+			'only'  => ['index', 'destroy', 'store'],
+			'names' => [
+				'index'   => 'last_fm_users_friends_path',
+				'destroy' => 'last_fm_users_friends_destroy',
+				'store'   => 'last_fm_users_friends_store',
+			]
+		]);
+		Route::resource('artists', 'LastFm\UsersArtistsController', [
+			'only'  => ['index', 'destroy', 'store'],
+			'names' => [
+				'index'   => 'last_fm_users_artists_path',
+				'destroy' => 'last_fm_users_artists_destroy',
+				'store'   => 'last_fm_users_artists_store',
+			]
+		]);
+	});
+	Route::resource('artists', 'LastFm\ArtistsController', [
+		'only'  => ['index', 'destroy', 'store'],
+		'names' => [
+			'index'   => 'artists_path',
+			'destroy' => 'artists_destroy',
+			'store'   => 'artists_store',
+		]
+	]);
+	Route::resource('tags', 'TagsController', [
+		'only'  => ['index', 'destroy', 'store'],
+		'names' => [
+			'index'   => 'tags_path',
+			'destroy' => 'tags_destroy',
+			'store'   => 'tags_store',
+		]
+	]);
+});
 
-Route::resource('lastfm-users/artists', 'LastFmUsersArtistsController', [
-	'only'  => ['index', 'destroy', 'store'],
-	'names' => [
-		'index'   => 'last_fm_users_artists_path',
-		'destroy' => 'last_fm_users_artists_destroy',
-		'store'   => 'last_fm_users_artists_store',
-	]
-]);
-
-Route::resource('lastfm-users', 'LastFmUsersController', [
-	'only'  => ['index', 'destroy', 'store'],
-	'names' => [
-		'index'   => 'last_fm_users_path',
-		'destroy' => 'last_fm_users_destroy',
-	]
-]);
-
-Route::resource('tags', 'TagsController', [
-	'only'  => ['index', 'destroy', 'store'],
-	'names' => [
-		'index'   => 'tags_path',
-		'destroy' => 'tags_destroy',
-		'store'   => 'tags_store',
-	]
-]);
 
 /**
  * API

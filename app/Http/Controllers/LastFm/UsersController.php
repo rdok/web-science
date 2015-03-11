@@ -1,10 +1,11 @@
-<?php namespace App\Http\Controllers;
+<?php namespace App\Http\Controllers\LastFm;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\LastFmUser;
 use Laracasts\Flash\Flash;
 
-class LastFmUsersController extends Controller
+class UsersController extends Controller
 {
 
 	function __construct()
@@ -22,21 +23,20 @@ class LastFmUsersController extends Controller
 		$title = "LastFm Users";
 		$lastFmUsers = LastFmUser::paginate(100);
 
-		return view('last_fm_users.table', compact('title', 'secondTitle', 'lastFmUsers'));
+		return view('last_fm_users.default', compact('title', 'secondTitle', 'lastFmUsers'));
 	}
 
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
 		truncateByModel(new LastFmUser);
 
-		Flash::success('Successfully deleted all lastfm users from database.');
+		Flash::success('Successfully deleted all LastFm Users from database.');
 
 		return redirect()->back();
 	}

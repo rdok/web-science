@@ -25,9 +25,9 @@
                 <div class="box-body">
                     <div class="row">
                         @if (Auth::user())
-                            @include('last_fm_users._partials.authed_actions')
+                            @include('last_fm_users._partials.authorized_actions.friends')
                         @else
-                            @include('last_fm_users._partials.guest_actions')
+                            @include('last_fm_users._partials.unauthorized_actions.friends')
                         @endif
                     </div>
                 </div>
