@@ -1,4 +1,5 @@
 <?php namespace App\StatsApp\Importers;
+
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -6,12 +7,12 @@ use Illuminate\Support\Facades\DB;
  * @author Rizart Dokollari
  * @since 2/22/15
  */
+class ArtistImporter extends Importer
+{
 
-class ArtistImporter extends Importer {
-
-	public function import($lastFmUserArtistsFile)
+	public function import($lastFmUsersFile)
 	{
-		$rawArtists = explode("\n", $lastFmUserArtistsFile); // to array
+		$rawArtists = explode("\n", $lastFmUsersFile); // to array
 
 		$totalArtists = count($rawArtists) - 1; // -1 due to \n at last line
 
@@ -20,13 +21,14 @@ class ArtistImporter extends Importer {
 		// TODO: for each line create new artists if new artists slag does not exist
 		for ($i = 1; $i < $totalArtists; $i++) // first line contains labels; omit them
 		{
-			list($id, $name, $url, $pictureUrl) = explode("\t", $rawArtists[$i]);
+			list($artistId, $name, $url, $pictureUrl) = explode("\t", $rawArtists[$i]);
 
 			$slug = str_replace('http://www.last.fm/music/', '', $url);
 
 			$now = Carbon::now();
 
 			$artists[] = [
+				'id'         => $artistId,
 				'name'       => $name,
 				'slug'       => $slug,
 				'url'        => $url,

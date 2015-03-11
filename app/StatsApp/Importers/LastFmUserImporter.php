@@ -1,6 +1,5 @@
 <?php namespace App\StatsApp\Importers;
 
-use App\LastFmUser;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -8,7 +7,7 @@ use Illuminate\Support\Facades\DB;
  * @author Rizart Dokollari
  * @since 2/22/15
  */
-class LastFmUserArtistsImporter extends Importer
+class LastFmUserImporter extends Importer
 {
 
 	public function import($lastFmUsersFile)
@@ -17,18 +16,19 @@ class LastFmUserArtistsImporter extends Importer
 
 		$totalUserArtist = count($rawLastFmUserArtist) - 1; // -1 due to \n at last line
 
+		// TODO: verify user_id is first column
+
 		for ($i = 1; $i < $totalUserArtist; $i++) // first line contains labels; omit them
 		{
-			list($lastFmUserId, $artistId, $weight) = explode("\t", $rawLastFmUserArtist[$i]);
+			// all .dat files with users_id has as first column user id
+			list($lastFmUserId) = explode("\t", $rawLastFmUserArtist[$i]);
 
 			$now = Carbon::now();
 
-			$lastFmUserArtists[] = [
-				'last_fm_users_id' => $lastFmUserId,
-				'artist_id'        => $artistId,
-				'listen_count'     => $weight,
-				'created_at'       => $now,
-				'updated_at'       => $now
+			$lastFmUserArtists[$lastFmUserId] = [
+				'id'         => $lastFmUserId,
+				'created_at' => $now,
+				'updated_at' => $now
 			];
 		}
 
@@ -36,7 +36,7 @@ class LastFmUserArtistsImporter extends Importer
 
 		foreach ($lastFmUserArtists as $lastFmUserArtistsChunk)
 		{
-			DB::table('last_fm_user_artist')->insert($lastFmUserArtistsChunk);
+			DB::table('last_fm_users')->insert($lastFmUserArtistsChunk);
 		}
 	}
 }

@@ -6,7 +6,7 @@
 
         <div class="tooltip-wrapper"
              data-title="{{ count($lastFmUsers) === 0 ? 'Import from file' : 'Delete lastFmUsers artists listened first'}}">
-            {!! Form::button('<i class="fa fa-cloud-upload"></i>user_artist.dat', ['type' => 'submit', 'class' => 'btn
+            {!! Form::button('<i class="fa fa-cloud-upload"></i>user_artists.dat', ['type' => 'submit', 'class' => 'btn
             btn-app' ])
             !!}
         </div>
