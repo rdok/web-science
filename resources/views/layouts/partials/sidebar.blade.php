@@ -5,7 +5,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                {!! HTML::image('img/default-avatar.png', 'User Image', ['class' => 'img-circle']) !!}
+                {!! HTML::image('img/default-avatar.png', 'User Image', ['class' => 'img-circle'], true) !!}
             </div>
             <div class="pull-left info">
                 <p>Guest</p>

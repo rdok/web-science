@@ -1,13 +1,13 @@
 <!-- User Account: style can be found in dropdown.less -->
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        {!! HTML::image('img/default-avatar.png', 'User Image', ['class' => 'user-image']) !!}
+        {!! HTML::image('img/default-avatar.png', 'User Image', ['class' => 'user-image'], true) !!}
         <span class="hidden-xs"> {{ Auth::user()->username }}</span>
     </a>
     <ul class="dropdown-menu">
         <!-- User image -->
         <li class="user-header">
-            {!! HTML::image('img/default-avatar.png', 'User Image', ['class' => 'user-image']) !!}
+            {!! HTML::image('img/default-avatar.png', 'User Image', ['class' => 'user-image'], true) !!}
 
             <p>
                 {{ Auth::user()->name }}
