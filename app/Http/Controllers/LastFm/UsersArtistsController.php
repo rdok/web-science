@@ -35,9 +35,10 @@ class UsersArtistsController extends Controller
 	public function index()
 	{
 		$title = "LastFm Users Artists";
-		$lastFmUsers = LastFmUser::paginate(10);
 
-		return view('last_fm_users.artists', compact('title', 'secondTitle', 'lastFmUsers'));
+		$artists = Artist::paginate(7);
+
+		return view('last_fm_users.artists', compact('title', 'secondTitle', 'artists'));
 	}
 
 	/**
@@ -54,7 +55,7 @@ class UsersArtistsController extends Controller
 			return redirect()->route('artists_path');
 		}
 
-		if (!Input::hasFile('lastFmUserArtist'))
+		if ( ! Input::hasFile('lastFmUserArtist'))
 		{
 			Flash::error('File user_artists.dat is missing.');
 
@@ -69,7 +70,6 @@ class UsersArtistsController extends Controller
 		{
 			$this->lastFmUserImporter->import($lastFmUserArtistsFile);
 		}
-
 
 		$this->lastFmUserArtistsImporter->import($lastFmUserArtistsFile);
 

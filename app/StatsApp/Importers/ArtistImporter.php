@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\DB;
 class ArtistImporter extends Importer
 {
 
-	public function import($lastFmUsersFile)
+	public function import($lastFmUserFriendsFile)
 	{
-		$rawArtists = explode("\n", $lastFmUsersFile); // to array
+		$rawArtists = explode("\n", $lastFmUserFriendsFile); // to array
 
 		$totalArtists = count($rawArtists) - 1; // -1 due to \n at last line
 

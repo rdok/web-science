@@ -56,13 +56,13 @@
                         </thead>
                         <tbody>
 
-                        @foreach($lastFmUsers as $lastFmUser)
-                            @foreach($lastFmUser->artists as $artist)
+                        @foreach($artists as $artist)
+                            @foreach($artist->lastFmUsers as $lastFmUser)
                                 <tr>
                                     <td>{!! $lastFmUser->id !!}</td>
                                     <td>{!! $artist->id !!}</td>
-                                    <td>{!! $artist->pivot->listen_count !!}</td>
-                                    <td>{!! $lastFmUser->updated_at !!}</td>
+                                    <td>{!! $lastFmUser->pivot->listen_count !!}</td>
+                                    <td>{!! $artist->updated_at !!}</td>
                                 </tr>
                             @endforeach
                         @endforeach
