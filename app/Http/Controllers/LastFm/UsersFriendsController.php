@@ -1,28 +1,28 @@
 <?php namespace App\Http\Controllers\LastFm;
 
-use App\Artist;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\LastFmUser;
-use App\StatsApp\Importers\LastFmUserArtistsImporter;
+use App\StatsApp\Importers\LastFmUserFriendsImporter;
 use App\StatsApp\Importers\LastFmUserImporter;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 use Laracasts\Flash\Flash;
 
 class UsersFriendsController extends Controller
 {
-	protected $lastFmUserArtistsImporter;
+	protected $lastFmUserFriendsImporter;
 	protected $lastFmUserImporter;
 
 	/**
-	 * @param LastFmUserArtistsImporter $lastFmUserArtistsImporter
 	 * @param LastFmUserImporter $lastFmUserImporter
+	 * @param LastFmUserFriendsImporter $lastFmUserFriendsImporter
 	 */
-	function __construct(LastFmUserImporter $lastFmUserImporter, LastFmUserArtistsImporter $lastFmUserArtistsImporter)
+	function __construct(LastFmUserImporter $lastFmUserImporter, LastFmUserFriendsImporter $lastFmUserFriendsImporter)
 	{
-		$this->lastFmUserArtistsImporter = $lastFmUserArtistsImporter;
 		$this->lastFmUserImporter = $lastFmUserImporter;
+		$this->lastFmUserFriendsImporter = $lastFmUserFriendsImporter;
 
 		$this->middleware('auth', ['only' => ['store', 'destroy']]);
 	}
@@ -35,7 +35,8 @@ class UsersFriendsController extends Controller
 	public function index()
 	{
 		$title = "LastFm Users Friends";
-		$lastFmUsers = LastFmUser::paginate(10);
+
+		$lastFmUsers = DB::table('last_fm_user_friend')->take(50)->get();
 
 		return view('last_fm_users.friends', compact('title', 'secondTitle', 'lastFmUsers'));
 	}
@@ -47,48 +48,39 @@ class UsersFriendsController extends Controller
 	 */
 	public function store()
 	{
-		if (Artist::all()->isEmpty())
+		if ( ! Input::hasFile('lastFmUserFriend'))
 		{
-			Flash::error('Artist data is required. Import artist.dat first');
+			Flash::error('File user_friends.dat is missing.');
 
-			return redirect()->route('artists_path');
+			return redirect()->route('last_fm_users_friends_path');
 		}
 
-		if (!Input::hasFile('lastFmUserArtist'))
-		{
-			Flash::error('File user_artists.dat is missing.');
+		$lastFmUserFriendFileInfo = Input::file('lastFmUserFriend');
 
-			return redirect()->route('last_fm_users_path');
-		}
-
-		$lastFmUserArtistFileInfo = Input::file('lastFmUserArtist');
-
-		$lastFmUserArtistsFile = File::get($lastFmUserArtistFileInfo->getRealPath());
+		$lastFmUserArtistsFile = File::get($lastFmUserFriendFileInfo->getRealPath());
 
 		if (LastFmUser::all()->isEmpty())
 		{
 			$this->lastFmUserImporter->import($lastFmUserArtistsFile);
 		}
 
+		$this->lastFmUserFriendsImporter->import($lastFmUserArtistsFile);
 
-		$this->lastFmUserArtistsImporter->import($lastFmUserArtistsFile);
+		Flash::success('Successfully imported user friends data into database.');
 
-		Flash::success('Successfully imported user artists data into database.');
-
-		return redirect()->route('last_fm_users_path');
+		return redirect()->route('last_fm_users_friends_path');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
 		truncateByModel(new LastFmUser);
 
-		Flash::success('Successfully deleted all lastfm users from database.');
+		Flash::success('Successfully deleted all LastFm users friends from database.');
 
 		return redirect()->back();
 	}

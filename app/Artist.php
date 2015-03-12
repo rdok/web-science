@@ -29,6 +29,6 @@ class Artist extends Model
 
 	public function lastFmUsers()
 	{
-		return $this->hasMany('App\LastFmUser');
+		return $this->belongsToMany('App\LastFmUser', 'last_fm_user_artist', 'last_fm_users_id', 'artist_id')->withPivot('listen_count');
 	}
 }

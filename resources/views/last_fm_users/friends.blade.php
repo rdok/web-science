@@ -56,13 +56,11 @@
                         <tbody>
 
                         @foreach($lastFmUsers as $lastFmUser)
-                            @foreach($lastFmUser->friends as $friend)
-                                <tr>
-                                    <td>{!! $lastFmUser->id !!}</td>
-                                    <td>{!! $friend->id !!}</td>
-                                    <td>{!! $lastFmUser->updated_at !!}</td>
-                                </tr>
-                            @endforeach
+                            <tr>
+                                <td>{!! $lastFmUser->last_fm_user_id !!}</td>
+                                <td>{!! $lastFmUser->friend_id !!}</td>
+                                <td>{!! $lastFmUser->updated_at !!}</td>
+                            </tr>
                         @endforeach
 
                         </tbody>

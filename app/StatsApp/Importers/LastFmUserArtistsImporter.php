@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\DB;
 class LastFmUserArtistsImporter extends Importer
 {
 
-	public function import($lastFmUsersFile)
+	public function import($lastFmUserFriendsFile)
 	{
-		$rawLastFmUserArtist = explode("\n", $lastFmUsersFile); // to array
+		$rawLastFmUserArtist = explode("\n", $lastFmUserFriendsFile); // to array
 
 		$totalUserArtist = count($rawLastFmUserArtist) - 1; // -1 due to \n at last line
 
@@ -31,7 +31,7 @@ class LastFmUserArtistsImporter extends Importer
 			];
 		}
 
-		$lastFmUserArtists = array_chunk($lastFmUserArtists, 1000);
+		$lastFmUserArtists = array_chunk($lastFmUserArtists, 200);
 
 		foreach ($lastFmUserArtists as $lastFmUserArtistsChunk)
 		{
