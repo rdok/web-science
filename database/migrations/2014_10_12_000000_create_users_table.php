@@ -3,7 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateUsersTable extends Migration {
+class CreateUsersTable extends Migration
+{
 
 	/**
 	 * Run the migrations.
@@ -16,9 +17,10 @@ class CreateUsersTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('name');
-			$table->string('username')->unique();
+			$table->string('avatar');
+			$table->string('username')->unique()->nullable();
 			$table->string('email')->unique();
-			$table->string('password', 60);
+			$table->string('password', 60)->nullable();
 			$table->rememberToken();
 			$table->timestamps();
 		});

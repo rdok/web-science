@@ -1,10 +1,11 @@
-<?php namespace app\StatsApp\Users;
+<?php namespace App\StatsApp\Users;
 
 /**
  * @author Rizart Dokollari
  * @since 2/23/15
  */
-class UserRepository {
+class UserRepository
+{
 
 	/**
 	 * Persists a user
@@ -15,5 +16,10 @@ class UserRepository {
 	public function save(User $user)
 	{
 		return $user->save();
+	}
+
+	public function findByUserNameOrCreate($userData)
+	{
+		return User::firstOrCreate($userData);
 	}
 }

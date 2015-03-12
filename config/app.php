@@ -148,6 +148,7 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
+		'Laravel\Socialite\SocialiteServiceProvider'
 
 	],
 
@@ -201,6 +202,7 @@ return [
 		'HTML'        => 'Illuminate\Html\HtmlFacade',
 		'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
 		'Flash'       => 'Laracasts\Flash\Flash',
+		'Socialize'   => 'Laravel\Socialite\Facades\Socialite',
 	],
 
 ];

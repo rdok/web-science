@@ -12,6 +12,15 @@ get('/', [
 	'uses' => 'WelcomeController@index'
 ]);
 
+get('github/login', [
+	'as'   => 'github_login',
+	'uses' => 'Auth\SocialiteController@github'
+]);
+
+get('facebook/login', [
+	'as'   => 'facebook_login',
+	'uses' => 'Auth\SocialiteController@facebook'
+]);
 
 Route::group(['prefix' => 'lastfm'], function ()
 {
