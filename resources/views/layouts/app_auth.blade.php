@@ -5,15 +5,15 @@
     <title>StatsApp | {!! $title !!} </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.2 -->
-    {!! HTML::style('packages/bower/bootstrap/dist/css/bootstrap.min.css') !!}
+    {!! HTML::style('packages/bower/bootstrap/dist/css/bootstrap.min.css', [], true) !!}
     <!-- Font Awesome Icons -->
-    {!! HTML::style('packages/bower/fontawesome/css/font-awesome.min.css') !!}
+    {!! HTML::style('packages/bower/fontawesome/css/font-awesome.min.css', [], true) !!}
     <!-- AdminLTE -->
-    {!! HTML::style('css/AdminLTE/AdminLTE.min.css') !!}
+    {!! HTML::style('css/AdminLTE/AdminLTE.min.css', [], true) !!}
     <!-- iCheck -->
-    {!! HTML::style('packages/bower/iCheck/skins/square/blue.css') !!}
+    {!! HTML::style('packages/bower/iCheck/skins/square/blue.css', [], true) !!}
 
-    {!! HTML::style('css/AdminLTE/app_auth.css') !!}
+    {!! HTML::style('css/AdminLTE/app_auth.css', [], true) !!}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,13 +28,13 @@
 @yield('content')
 
 <!-- jQuery -->
-{!! HTML::script('packages/bower/jquery/dist/jquery.min.js') !!}
+{!! HTML::script('packages/bower/jquery/dist/jquery.min.js', [], true) !!}
 <!-- Bootstrap -->
-{!! HTML::script('packages/bower/bootstrap/dist/js/bootstrap.min.js') !!}
+{!! HTML::script('packages/bower/bootstrap/dist/js/bootstrap.min.js', [], true) !!}
 <!-- FastClick -->
-{!! HTML::script('packages/bower/fastclick/lib/fastclick.js') !!}
+{!! HTML::script('packages/bower/fastclick/lib/fastclick.js', [], true) !!}
 <!-- iCheck -->
-{!! HTML::script('packages/bower/iCheck/icheck.min.js') !!}
+{!! HTML::script('packages/bower/iCheck/icheck.min.js', [], true) !!}
 
 @yield('scripts')
 
@@ -42,8 +42,8 @@
     $(function () {
         $('input').iCheck({
             checkboxClass: 'icheckbox_square-blue',
-            radioClass   : 'iradio_square-blue',
-            increaseArea : '20%' // optional
+            radioClass: 'iradio_square-blue',
+            increaseArea: '20%' // optional
         });
     });
 </script>
