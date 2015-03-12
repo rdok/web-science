@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\StatsApp\Users\Social\AuthenticateFacebookUser;
-use App\StatsApp\Users\Social\AuthenticateGitHubUser;
+use App\StatsApp\Users\Social\AuthenticateSocialUser;
 use App\StatsApp\Users\Social\AuthenticateUserListener;
 use Illuminate\Http\Request;
 
@@ -11,23 +10,33 @@ class SocialiteController extends Controller implements AuthenticateUserListener
 {
 
 	/**
-	 * @param AuthenticateGitHubUser $authenticateUser
+	 * @param AuthenticateSocialUser $authenticateUser
 	 * @param Request $request
 	 * @return mixed
 	 */
-	public function github(AuthenticateGitHubUser $authenticateUser, Request $request)
+	public function github(AuthenticateSocialUser $authenticateUser, Request $request)
 	{
-		return $authenticateUser->execute($request->has('code'), $this);
+		return $authenticateUser->execute($request->has('code'), $this, 'github');
 	}
 
 	/**
-	 * @param AuthenticateFacebookUser $authenticateUser
+	 * @param AuthenticateSocialUser $authenticateUser
 	 * @param Request $request
 	 * @return mixed
 	 */
-	public function facebook(AuthenticateFacebookUser $authenticateUser, Request $request)
+	public function facebook(AuthenticateSocialUser $authenticateUser, Request $request)
 	{
-		return $authenticateUser->execute($request->has('code'), $this);
+		return $authenticateUser->execute($request->has('code'), $this, 'facebook');
+	}
+
+	/**
+	 * @param AuthenticateSocialUser $authenticateUser
+	 * @param Request $request
+	 * @return mixed
+	 */
+	public function googlePlus(AuthenticateSocialUser $authenticateUser, Request $request)
+	{
+		return $authenticateUser->execute($request->has('code'), $this, 'google');
 	}
 
 	public function userHasLoggedIn($user)

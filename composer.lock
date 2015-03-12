@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f041a361a70e44f0e5516373544cd1d3",
+    "hash": "d6c37d0b4eaf7c50f9c47d7f129817ff",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1018,16 +1018,16 @@
         },
         {
             "name": "laravel/socialite",
-            "version": "v2.0.3",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/socialite.git",
-                "reference": "4ca0e2868fdfd3156c02c0d5c5612cbd8fa9b124"
+                "reference": "7f96a35e8976faea4c282abcd5c196ef8ddfab7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/socialite/zipball/4ca0e2868fdfd3156c02c0d5c5612cbd8fa9b124",
-                "reference": "4ca0e2868fdfd3156c02c0d5c5612cbd8fa9b124",
+                "url": "https://api.github.com/repos/laravel/socialite/zipball/7f96a35e8976faea4c282abcd5c196ef8ddfab7c",
+                "reference": "7f96a35e8976faea4c282abcd5c196ef8ddfab7c",
                 "shasum": ""
             },
             "require": {
@@ -1068,7 +1068,7 @@
                 "laravel",
                 "oauth"
             ],
-            "time": "2015-02-24 20:20:48"
+            "time": "2015-02-14 01:56:05"
         },
         {
             "name": "league/flysystem",
@@ -1218,16 +1218,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.13.0",
+            "version": "1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "c41c218e239b50446fd883acb1ecfd4b770caeae"
+                "reference": "c31a2c4e8db5da8b46c74cf275d7f109c0f249ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c41c218e239b50446fd883acb1ecfd4b770caeae",
-                "reference": "c41c218e239b50446fd883acb1ecfd4b770caeae",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c31a2c4e8db5da8b46c74cf275d7f109c0f249ac",
+                "reference": "c31a2c4e8db5da8b46c74cf275d7f109c0f249ac",
                 "shasum": ""
             },
             "require": {
@@ -1287,7 +1287,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-03-05 01:12:12"
+            "time": "2015-03-09 09:58:04"
         },
         {
             "name": "mtdowling/cron-expression",
@@ -2603,16 +2603,16 @@
         },
         {
             "name": "laracasts/testdummy",
-            "version": "2.0.12",
+            "version": "2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laracasts/TestDummy.git",
-                "reference": "a3cb5605fbdac17f0a8973ece0e41b1221ccc990"
+                "reference": "d32a6cbc789504969f8e744e355817cc07c755c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laracasts/TestDummy/zipball/a3cb5605fbdac17f0a8973ece0e41b1221ccc990",
-                "reference": "a3cb5605fbdac17f0a8973ece0e41b1221ccc990",
+                "url": "https://api.github.com/repos/laracasts/TestDummy/zipball/d32a6cbc789504969f8e744e355817cc07c755c0",
+                "reference": "d32a6cbc789504969f8e744e355817cc07c755c0",
                 "shasum": ""
             },
             "require": {
@@ -2646,7 +2646,7 @@
                 "stubs",
                 "testing"
             ],
-            "time": "2015-01-07 19:32:02"
+            "time": "2015-03-12 03:55:07"
         },
         {
             "name": "pda/pheanstalk",

@@ -58,7 +58,7 @@
                 <p>- OR -</p>
                 <a href="{!! route('facebook_login') !!}" class="btn btn-block btn-social btn-facebook btn-flat"><i
                             class="fa fa-facebook"></i> Sign up using Facebook</a>
-                <a href="/" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i>
+                <a href="{!! route('google_plus_login') !!}" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i>
                     Sign up using Google+</a>
                 <a href="{!! route('github_login') !!}" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>
                     Sign up using GitHub</a>

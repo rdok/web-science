@@ -37,10 +37,12 @@
 
             <div class="social-auth-links text-center">
                 <p>- OR -</p>
-                <a href="{!! route('github_login') !!}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using Facebook</a>
-                <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i> Sign in using Google+</a>
-                <a href="{!! route('github_login') !!}" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-github"></i>
-                    Sign up using GitHub</a>
+                <a href="{!! route('facebook_login') !!}" class="btn btn-block btn-social btn-facebook btn-flat"><i
+                            class="fa fa-facebook"></i> Sign in using Facebook</a>
+                <a href="{!! route('google_plus_login') !!}" class="btn btn-block btn-social btn-google-plus btn-flat"><i
+                            class="fa fa-google-plus"></i> Sign in using Google+</a>
+                <a href="{!! route('github_login') !!}" class="btn btn-block btn-social btn-github btn-flat"><i
+                            class="fa fa-github"></i> Sign in using GitHub</a>
             </div><!-- /.social-auth-links -->
 
             <a href="#">I forgot my password</a><br>

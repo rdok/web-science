@@ -18,8 +18,15 @@ class UserRepository
 		return $user->save();
 	}
 
-	public function findByUserNameOrCreate($userData)
+	public function findByUserNameOrCreate($user)
 	{
-		return User::firstOrCreate($userData);
+		$newUser = User::firstOrNew(['email' => $user['email']]);
+		$newUser->name = $user['name'];
+		$newUser->username = $user['username'];
+		$newUser->avatar = $user['avatar'];
+
+		$newUser->save();
+
+		return $newUser;
 	}
 }

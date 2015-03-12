@@ -17,6 +17,11 @@ get('github/login', [
 	'uses' => 'Auth\SocialiteController@github'
 ]);
 
+get('google-plus/login', [
+	'as'   => 'google_plus_login',
+	'uses' => 'Auth\SocialiteController@googlePlus'
+]);
+
 get('facebook/login', [
 	'as'   => 'facebook_login',
 	'uses' => 'Auth\SocialiteController@facebook'
