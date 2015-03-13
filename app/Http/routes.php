@@ -31,6 +31,14 @@ Route::group(['prefix' => 'lastfm'], function ()
 {
 	Route::group(['prefix' => 'users'], function ()
 	{
+		Route::resource('artists', 'LastFm\UsersArtistsController', [
+			'only'  => ['index', 'destroy', 'store'],
+			'names' => [
+				'index'   => 'last_fm_users_artists_path',
+				'destroy' => 'last_fm_users_artists_destroy',
+				'store'   => 'last_fm_users_artists_store',
+			]
+		]);
 		Route::resource('/', 'LastFm\UsersController', [
 			'only'  => ['index', 'destroy', 'store'],
 			'names' => [
@@ -46,12 +54,12 @@ Route::group(['prefix' => 'lastfm'], function ()
 				'store'   => 'last_fm_users_friends_store',
 			]
 		]);
-		Route::resource('artists', 'LastFm\UsersArtistsController', [
+		Route::resource('tagged-artists', 'LastFm\UsersTaggedArtistsController', [
 			'only'  => ['index', 'destroy', 'store'],
 			'names' => [
-				'index'   => 'last_fm_users_artists_path',
-				'destroy' => 'last_fm_users_artists_destroy',
-				'store'   => 'last_fm_users_artists_store',
+				'index'   => 'last_fm_users_tagged_artists_path',
+				'destroy' => 'last_fm_users_tagged_artists_destroy',
+				'store'   => 'last_fm_users_tagged_artists_store',
 			]
 		]);
 	});

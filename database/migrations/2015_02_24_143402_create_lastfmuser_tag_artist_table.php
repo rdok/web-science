@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class CreateLastfmuserTagArtistTable extends Migration {
+class CreateLastfmuserTagArtistTable extends Migration
+{
 
 	/**
 	 * Run the migrations.
@@ -12,7 +13,7 @@ class CreateLastfmuserTagArtistTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('last_fm_user_tag_artist', function(Blueprint $table)
+		Schema::create('last_fm_user_tag_artist', function (Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('artist_id')->unsigned()->index();
