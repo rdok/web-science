@@ -1,7 +1,6 @@
 <div class="col-md-6">
     <fieldset {{ count($lastFmUsers) === 0 ?: 'disabled' }}>
-        {!! Form::open(['route' => 'last_fm_users_friends_store', 'files' => true, 'class' => 'form-inline'])
-        !!}
+        {!! Form::open(['route' => 'last_fm_users_friends_store', 'files' => true, 'class' => 'form-inline']) !!}
         {!! Form::file('lastFmUserFriend', ['class' => 'filestyle btn btn-app', 'data-badge' => 'false', 'data-input' =>
         'false', 'type' => 'file', 'data-iconName' => 'fa fa-file-text-o', 'required' => 'required']) !!}
         <div class="tooltip-wrapper"

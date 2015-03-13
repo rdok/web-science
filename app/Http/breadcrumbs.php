@@ -57,3 +57,11 @@ Breadcrumbs::register('last_fm_users_friends_path', function ($breadcrumbs)
 
 	$breadcrumbs->push("LastFm Users Friends", route('last_fm_users_friends_path'));
 });
+
+// Home > [LastFm Users Tagged Artists]
+Breadcrumbs::register('last_fm_users_tagged_artists_path', function ($breadcrumbs)
+{
+	$breadcrumbs->parent('show_dashboard');
+
+	$breadcrumbs->push("LastFm Users Tagged Artists", route('last_fm_users_tagged_artists_path'));
+});

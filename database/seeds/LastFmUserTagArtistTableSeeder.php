@@ -2,6 +2,7 @@
 use App\Artist;
 use App\LastFmUser;
 use App\StatsApp\Tag;
+use Carbon\Carbon;
 use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
@@ -9,7 +10,8 @@ use Illuminate\Database\Seeder;
  * @author Rizart Dokollari
  * @since 2/22/15
  */
-class LastFmUserTagArtistTableSeeder extends Seeder {
+class LastFmUserTagArtistTableSeeder extends Seeder
+{
 
 	public function run()
 	{
@@ -25,8 +27,8 @@ class LastFmUserTagArtistTableSeeder extends Seeder {
 				'artist_id'       => $faker->randomElement($artistsId),
 				'tag_id'          => $faker->randomElement($tagsId),
 				'last_fm_user_id' => $faker->randomElement($lastFmUsersId),
+				'created_at'      => Carbon::createFromTimeStamp($faker->unixTime, config('app.timezone'))->toDateTimeString(),
 				'updated_at'      => $faker->dateTimeThisDecade(),
-				'created_at'      => $faker->dateTimeThisDecade()
 			]);
 		}
 	}

@@ -33,9 +33,10 @@
                 </a>
             </li>
             <li class="treeview {!! set_active(['artists_path', 'tags_path', 'last_fm_users_path',
-                'last_fm_users_artists_path', 'last_fm_users_friends_path']) !!}">
+                'last_fm_users_artists_path', 'last_fm_users_friends_path', 'last_fm_users_tagged_artists_path']) !!}">
                 <a href="#">
-                    <i class="fa fa-lastfm"></i> <span>LastFM Raw Data</span> <i class="fa fa-angle-left pull-right"></i>
+                    <i class="fa fa-lastfm"></i> <span>LastFM Raw Data</span> <i
+                            class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
                     <li class="{!! set_active(['artists_path']) !!}">
@@ -61,6 +62,11 @@
                     <li class="{!! set_active(['last_fm_users_friends_path']) !!}">
                         <a href="{!! route('last_fm_users_friends_path') !!}">
                             <i class="fa fa-circle-o"></i> Users Friends
+                        </a>
+                    </li>
+                    <li class="{!! set_active(['last_fm_users_tagged_artists_path']) !!}">
+                        <a href="{!! route('last_fm_users_tagged_artists_path') !!}">
+                            <i class="fa fa-circle-o"></i> Users Tagged Artists
                         </a>
                     </li>
                 </ul>

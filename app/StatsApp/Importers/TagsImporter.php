@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\DB;
 class TagsImporter extends Importer
 {
 
-	public function import($lastFmUserFriendsFile)
+	public function import($userTaggedArtistsFile)
 	{
-		$rawTags = explode("\n", $lastFmUserFriendsFile); // to array
+		$rawTags = explode("\n", $userTaggedArtistsFile); // to array
 
 		$totalTags = count($rawTags) - 1; // -1 due to \n at last line
 
