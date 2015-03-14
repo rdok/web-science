@@ -64,11 +64,6 @@
                             <i class="fa fa-circle-o"></i> Users Friends
                         </a>
                     </li>
-                    <li class="{!! set_active(['last_fm_users_tagged_artists_path']) !!}">
-                        <a href="{!! route('last_fm_users_tagged_artists_path') !!}">
-                            <i class="fa fa-circle-o"></i> Users Tagged Artists
-                        </a>
-                    </li>
                 </ul>
             </li>
         </ul>

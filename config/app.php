@@ -139,7 +139,6 @@ return [
 		'Illuminate\Html\HtmlServiceProvider',
 		'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
-		'Aws\Laravel\AwsServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -204,7 +203,6 @@ return [
 		'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
 		'Flash'       => 'Laracasts\Flash\Flash',
 		'Socialize'   => 'Laravel\Socialite\Facades\Socialite',
-		'AWS'         => 'Aws\Laravel\AwsFacade',
 	],
 
 ];
