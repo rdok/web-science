@@ -2,7 +2,7 @@
 
 @section('styles')
     <!-- DataTables -->
-    {!! HTML::style('packages/DataTables/dataTables.bootstrap.css') !!}
+    {!! HTML::style('packages/DataTables/dataTables.bootstrap.css', [], true) !!}
 @endsection
 
 @section('content')
@@ -81,12 +81,12 @@
 
 @section('scripts')
     <!-- DataTables -->
-    {!! HTML::script('packages/bower/DataTables/media/js/jquery.dataTables.min.js') !!}
-    {!! HTML::script('packages/DataTables/dataTables.bootstrap.js') !!}
+    {!! HTML::script('packages/bower/DataTables/media/js/jquery.dataTables.min.js', [], true) !!}
+    {!! HTML::script('packages/DataTables/dataTables.bootstrap.js', [], true) !!}
     <!-- SlimScroll -->
-    {!! HTML::script('packages/bower/slimScroll/jquery.slimscroll.min.js') !!}
+    {!! HTML::script('packages/bower/slimScroll/jquery.slimscroll.min.js', [], true) !!}
     <!-- Bootstrap Filestyle -->
-    {!! HTML::script('packages/bootstrap-filestyle/bootstrap-filestyle.min.js') !!}
+    {!! HTML::script('packages/bootstrap-filestyle/bootstrap-filestyle.min.js', [], true) !!}
 
     <!-- page script -->
     <script type="text/javascript">
