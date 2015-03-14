@@ -92,9 +92,9 @@
     {!! HTML::script('packages/bower/DataTables/media/js/jquery.dataTables.min.js', [], true) !!}
     {!! HTML::script('packages/DataTables/dataTables.bootstrap.js', [], true) !!}
     <!-- SlimScroll -->
-    {!! HTML::script('packages/bower/slimScroll/jquery.slimscroll.min.js'), [], true !!}
+    {!! HTML::script('packages/bower/slimScroll/jquery.slimscroll.min.js', [], true) !!}
     <!-- Bootstrap Filestyle -->
-    {!! HTML::script('packages/bootstrap-filestyle/bootstrap-filestyle.min.js'), [], true !!}
+    {!! HTML::script('packages/bootstrap-filestyle/bootstrap-filestyle.min.js', [], true) !!}
 
     <!-- page script -->
     <script type="text/javascript">
