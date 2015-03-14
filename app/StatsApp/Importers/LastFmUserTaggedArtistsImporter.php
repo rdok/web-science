@@ -1,5 +1,6 @@
 <?php namespace App\StatsApp\Importers;
 
+use App\Artist;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
@@ -26,10 +27,32 @@ class LastFmUserTaggedArtistsImporter extends Importer
 				'artist_id'       => $artistId,
 				'tag_id'          => $tagId,
 				'last_fm_user_id' => $userId,
-				'created_at'      => Carbon::createFromTimeStamp($timestamp, config('app.timezone'))->toDateTimeString(),
+				'created_at'      => Carbon::createFromTimeStamp((int)$timestamp, config('app.timezone'))->toDateTimeString(),
 				'updated_at'      => $now
 			];
 		}
+
+		$artists = Artist::all();
+		$missingArtists = [];
+
+		foreach ($userTaggedArtists as $userTaggedArtist)
+		{
+			if ($artists->search($userTaggedArtist['artist_id']))
+			{
+				$missingArtists[] = [
+					'id' => $userTaggedArtist['artist_id']
+				];
+			}
+		}
+		dd('break');
+
+		$missingArtists = array_chunk($missingArtists, 200);
+
+		foreach ($missingArtists as $missingArtistsChunk)
+		{
+			DB::table('artists')->insert($missingArtistsChunk);
+		}
+
 
 		$userTaggedArtists = array_chunk($userTaggedArtists, 200);
 

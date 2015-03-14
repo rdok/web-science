@@ -15,10 +15,10 @@ class CreateArtistsTable extends Migration {
 		Schema::create('artists', function (Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('slug')->unique();
-			$table->string('name');
+			$table->string('slug')->unique()->nullable();
+			$table->string('name')->nullable();
 			$table->string('mbid')->unique()->nullable();
-			$table->string('url');
+			$table->string('url')->nullable();
 			$table->string('streamable')->nullable();
 			$table->string('on_tour')->nullable();
 			$table->timestamps();

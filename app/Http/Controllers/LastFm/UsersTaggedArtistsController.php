@@ -4,27 +4,26 @@ use App\Artist;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\LastFmUser;
-use App\StatsApp\Importers\LastFmUserArtistsImporter;
 use App\StatsApp\Importers\LastFmUserImporter;
+use App\StatsApp\Importers\LastFmUserTaggedArtistsImporter;
 use App\StatsApp\Tag;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Request;
 use Laracasts\Flash\Flash;
 
 class UsersTaggedArtistsController extends Controller
 {
-	protected $lastFmUserArtistsImporter;
+	protected $lastFmUserTagArtistsImporter;
 	protected $lastFmUserImporter;
 
 	/**
-	 * @param LastFmUserArtistsImporter $lastFmUserArtistsImporter
 	 * @param LastFmUserImporter $lastFmUserImporter
+	 * @param LastFmUserTaggedArtistsImporter $userTagArtistsImporter
 	 */
-	function __construct(LastFmUserImporter $lastFmUserImporter, LastFmUserArtistsImporter $lastFmUserArtistsImporter)
+	function __construct(LastFmUserImporter $lastFmUserImporter, LastFmUserTaggedArtistsImporter $userTagArtistsImporter)
 	{
-		$this->lastFmUserArtistsImporter = $lastFmUserArtistsImporter;
+		$this->lastFmUserTagArtistsImporter = $userTagArtistsImporter;
 		$this->lastFmUserImporter = $lastFmUserImporter;
 
 		$this->middleware('auth', ['only' => ['store', 'destroy']]);
@@ -39,7 +38,7 @@ class UsersTaggedArtistsController extends Controller
 	{
 		$title = "LastFm Users Tagged Artists";
 
-		$usersTagArtists = DB::table('last_fm_user_tag_artist')->take(20)->get();
+		$usersTagArtists = DB::table('last_fm_user_tag_artist')->take(3)->get();
 
 		return view('last_fm_users.tagged_artists', compact('title', 'secondTitle', 'usersTagArtists'));
 	}
@@ -65,14 +64,7 @@ class UsersTaggedArtistsController extends Controller
 			return redirect()->route('tags_path');
 		}
 
-		dd(Request::file('usersTagArtists')->getErrorMessage());
-
-		dd(Request::all());
-		dd(Request::hasFile('usersTagArtists') );
-
-//&&  Request::file('usersTagArtists')->isValid()
-
-		if ( ! Input::hasFile('usersTagArtists'))
+		if (!Input::hasFile('usersTagArtists'))
 		{
 			Flash::error('File user_taggedartists-timestamps.dat is missing.');
 
@@ -88,7 +80,7 @@ class UsersTaggedArtistsController extends Controller
 			$this->lastFmUserImporter->import($lastFmUserTaggedArtistsFile);
 		}
 
-		$this->lastFmUserArtistsImporter->import($lastFmUserTaggedArtistsFile);
+		$this->lastFmUserTagArtistsImporter->import($lastFmUserTaggedArtistsFile);
 
 		Flash::success('Successfully imported user tagged artists data into database.');
 

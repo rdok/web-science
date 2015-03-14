@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "16fae7542988a81f7fca9e2404097286",
+    "hash": "0af1d2f83008b7751e61f4932cb91507",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -72,59 +72,6 @@
                 "sdk"
             ],
             "time": "2015-03-12 19:51:58"
-        },
-        {
-            "name": "aws/aws-sdk-php-laravel",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/aws/aws-sdk-php-laravel.git",
-                "reference": "90187392c1a79948a6c7a4bbf9cbe73dab5cc107"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php-laravel/zipball/90187392c1a79948a6c7a4bbf9cbe73dab5cc107",
-                "reference": "90187392c1a79948a6c7a4bbf9cbe73dab5cc107",
-                "shasum": ""
-            },
-            "require": {
-                "aws/aws-sdk-php": "~2.4",
-                "illuminate/support": "~5.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "laravel/framework": "~5.0",
-                "phpunit/phpunit": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Aws\\Laravel\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Amazon Web Services",
-                    "homepage": "http://aws.amazon.com"
-                }
-            ],
-            "description": "A simple Laravel 5 service provider for including the AWS SDK for PHP.",
-            "homepage": "http://aws.amazon.com/sdkforphp2",
-            "keywords": [
-                "amazon",
-                "aws",
-                "dynamodb",
-                "ec2",
-                "laravel",
-                "laravel 5",
-                "s3",
-                "sdk"
-            ],
-            "time": "2015-03-12 16:54:55"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -1013,16 +960,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.0.15",
+            "version": "v5.0.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "ec3a166c504acedffd8ed878b08481f9cb1497fb"
+                "reference": "861a1e78c84dca82fe4bd85d00349c52304eea77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/ec3a166c504acedffd8ed878b08481f9cb1497fb",
-                "reference": "ec3a166c504acedffd8ed878b08481f9cb1497fb",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/861a1e78c84dca82fe4bd85d00349c52304eea77",
+                "reference": "861a1e78c84dca82fe4bd85d00349c52304eea77",
                 "shasum": ""
             },
             "require": {
@@ -1135,7 +1082,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-03-12 14:09:40"
+            "time": "2015-03-13 13:27:55"
         },
         {
             "name": "laravel/socialite",
@@ -2501,12 +2448,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "b5afd37fd04d9b22e2e2a8db79da34dcc900b649"
+                "reference": "2b830bc169714639f3c3320cedf3729969d6733a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/b5afd37fd04d9b22e2e2a8db79da34dcc900b649",
-                "reference": "b5afd37fd04d9b22e2e2a8db79da34dcc900b649",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/2b830bc169714639f3c3320cedf3729969d6733a",
+                "reference": "2b830bc169714639f3c3320cedf3729969d6733a",
                 "shasum": ""
             },
             "require": {
@@ -2573,7 +2520,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2015-03-10 23:54:55"
+            "time": "2015-03-13 09:54:14"
         },
         {
             "name": "doctrine/instantiator",
