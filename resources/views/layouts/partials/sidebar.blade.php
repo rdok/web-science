@@ -66,6 +66,24 @@
                     </li>
                 </ul>
             </li>
+            <li class="treeview {!! set_active(['task_1_requirement_path']) !!}">
+                <a href="#">
+                    <i class="fa fa-tasks"></i> <span>Task 1</span> <i
+                            class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{!! set_active(['task_1_requirement_path']) !!}">
+                        <a href="{!! route('task_1_requirement_path') !!}">
+                            <i class="fa fa-circle-o"></i> Requirements
+                        </a>
+                    </li>
+                    <li class="{!! set_active(['task_1_solution_path']) !!}">
+                        <a href="{!! route('task_1_solution_path') !!}">
+                            <i class="fa fa-circle-o"></i> Solution
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

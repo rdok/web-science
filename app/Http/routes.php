@@ -27,6 +27,26 @@ get('facebook/login', [
 	'uses' => 'Auth\SocialiteController@facebook'
 ]);
 
+Route::group(['prefix' => 'tasks'], function ()
+{
+	Route::resource('1-requirements', 'Tasks\Task1RequirementController', [
+		'only'  => ['index', 'destroy', 'store'],
+		'names' => [
+			'index'   => 'task_1_requirement_path',
+			'destroy' => 'tasks_1_requirement_destroy',
+			'store'   => 'tasks_1_requirement_store',
+		]
+	]);
+	Route::resource('1-solution', 'Tasks\Task1SolutionController', [
+		'only'  => ['index', 'destroy', 'store'],
+		'names' => [
+			'index'   => 'task_1_solution_path',
+			'destroy' => 'tasks_1_solution_destroy',
+			'store'   => 'tasks_1_solution_store',
+		]
+	]);
+});
+
 Route::group(['prefix' => 'lastfm'], function ()
 {
 	Route::group(['prefix' => 'users'], function ()

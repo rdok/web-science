@@ -65,3 +65,11 @@ Breadcrumbs::register('last_fm_users_tagged_artists_path', function ($breadcrumb
 
 	$breadcrumbs->push("LastFm Users Tagged Artists", route('last_fm_users_tagged_artists_path'));
 });
+
+// Home > [Task 1 - Requirements]
+Breadcrumbs::register('task_1_requirement_path', function ($breadcrumbs)
+{
+	$breadcrumbs->parent('show_dashboard');
+
+	$breadcrumbs->push("Task 1 - Requirement", route('task_1_requirement_path'));
+});
