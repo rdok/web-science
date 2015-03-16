@@ -115,11 +115,15 @@ get('api/v1/tags', [
 	'uses' => 'Api\TagsController@index'
 ]);
 
+get('api/v1/artists/{minimumTimesListened?}', [
+	'as'   => 'api_artists_path',
+	'uses' => 'Api\ArtistsController@index'
+]);
+
 Route::resource('api/v1/artists', 'Api\ArtistsController', [
-	'only'  => ['index', 'show',],
+	'only'  => ['show'],
 	'names' => [
-		'index' => 'api_artists_path',
-		'show'  => 'api_artist_show',
+		'show' => 'api_artist_show',
 	]
 ]);
 
