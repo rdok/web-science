@@ -89,8 +89,6 @@
     <!-- DataTables -->
     {!! HTML::script('packages/bower/DataTables/media/js/jquery.dataTables.min.js') !!}
     {!! HTML::script('packages/DataTables/dataTables.bootstrap.js') !!}
-    <!-- SlimScroll -->
-    {!! HTML::script('packages/bower/slimScroll/jquery.slimscroll.min.js') !!}
     <!-- Bootstrap Filestyle -->
     {!! HTML::script('packages/bootstrap-filestyle/bootstrap-filestyle.min.js') !!}
 

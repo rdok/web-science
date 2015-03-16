@@ -64,6 +64,8 @@
 {!! HTML::script('packages/bower/bootstrap/dist/js/bootstrap.min.js', [], true) !!}
 <!-- FastClick -->
 {!! HTML::script('packages/bower/fastclick/lib/fastclick.js', [], true) !!}
+<!-- SlimScroll -->
+{!! HTML::script('packages/bower/slimScroll/jquery.slimscroll.min.js', [], true) !!}
 <!-- AdminLTE App -->
 {!! HTML::script('js/app.min.js', [], true) !!}
 <script>$('#flash-overlay-modal').modal();</script>
