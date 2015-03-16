@@ -3,6 +3,7 @@
 use App\Artist;
 use App\Http\Requests;
 use App\StatsApp\Transformers\ArtistTransformer;
+use Illuminate\Support\Facades\DB;
 
 class ArtistsController extends ApiController
 {
@@ -24,18 +25,18 @@ class ArtistsController extends ApiController
 	 */
 	public function index($minimumTimesListened = null)
 	{
-
-		if ( ! $minimumTimesListened)
+		// TODO: use slugs instead of id. Requirement: give users, tag slugs.
+		if ($minimumTimesListened !== null)
 		{
-			$artists = Artist::with(['lastFmUsers' => function ($query)
-			{
-				$query->where('listen_count', '>', 1);
-			}])->take(10)->get();
+			$listenedArtists = DB::table('last_fm_user_artist')
+//				->join('last_fm_user_artist', 'artists.id', '=', 'last_fm_user_artist.artist_id')
+				->where('listen_count', '>', 1)
+				->orderBy('listen_count', 'asc')
+				->get();
 
-//			LastFmUser::with("artists")->where('listen_count', '>', (int)$minimumTimesListened)->get();
-			foreach($artists as $artist){
-				dd($artist->listen_count);
-			}
+			return $this->respond([
+				'data' => $listenedArtists
+			]);
 		}
 
 		$artists = Artist::all();
@@ -52,7 +53,7 @@ class ArtistsController extends ApiController
 	 */
 	public function store()
 	{
-		if ( ! Input::get('slug'))
+		if (!Input::get('slug'))
 		{
 			// some kind of response
 			// 422
@@ -70,7 +71,7 @@ class ArtistsController extends ApiController
 	 */
 	public function show(Artist $artist)
 	{
-		if ( ! $artist->slug)
+		if (!$artist->slug)
 		{
 			return $this->respondNotFound('Artist not found');
 		}

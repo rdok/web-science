@@ -130,8 +130,56 @@
     <!-- page script -->
     <script type="text/javascript">
         $(function () {
+            $.ajax({
+                type : "get",
+                dataType: "json",
+                url : "{{ route('api_artists_path') }}" + "/minimumTimesListened=1",
+                data : data,
+                success : function (jsonAritstsListened) {
+                    // sorted by weight/listen_count
+                    var graph = jsonAritstsListened.data;
+                    var graphSize = graph.length;
+                    var degreeDistributionList = [];
+                    var prevWeight = 0; // json graph
+
+                    graph.forEach(function(currentNode) {
+                        var weight = currentNode.listen_count;
+
+                        degreeDistributionList.containsWeight = function (weight) {
+                           degreeDistributionList.forEach(function(degreeDistribution){
+                              if(degreeDistribution.weight == weight) return true;
+                           });
+                            return false;
+                        };
+
+                        degreeDistributionList.incrementDegreeDistribution = function (weight) {
+                            degreeDistributionList.forEach(function(degreeDistribution){
+                                if(degreeDistribution.weight == weight) {
+                                    degreeDistribution.degreeDistribution++;
+                                    return;
+                                }
+                            });
+                        };
+
+                        if( ! degreeDistributionList.containsWeight(weight)){
+                            degreeDistributionList.push({
+                                weight: weight,
+                                degreeDistribution: 1
+                            });
+                        } else {
+                           degreeDistributionList.incrementDegreeDistribution(weight);
+                        }
+                    });
+
+                    console.log(degreeDistributionList);
+                },
+                error: function(e){
+                    alert('error');
+                }
+            });
+
             var data = {
-                labels: [400, 500, 600, 700, 800, 900, 1000, 1100],
+                labels: ["artist name", 450, 600, 700, 800, 900, 1000, 1100],
                 datasets: [
                     {
                         label: "My Second dataset",
@@ -176,7 +224,7 @@
                 bezierCurveTension : 0.4,
 
                 //Boolean - Whether to show a dot for each point
-                pointDot : true,
+                pointDot : false,
 
                 //Number - Radius of each point dot in pixels
                 pointDotRadius : 4,
