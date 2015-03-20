@@ -130,57 +130,13 @@
     <!-- page script -->
     <script type="text/javascript">
         $(function () {
-            $.ajax({
-                type : "get",
-                dataType: "json",
-                url : "{{ route('api_artists_path') }}" + "/minimumTimesListened=1",
-                data : data,
-                success : function (jsonAritstsListened) {
-                    // sorted by weight/listen_count
-                    var graph = jsonAritstsListened.data;
-                    var graphSize = graph.length;
-                    var degreeDistributionList = [];
-                    var prevWeight = 0; // json graph
+            // Get context with jQuery - using jQuery's .get() method.
+            var ctx = $("#myChart").get(0).getContext("2d");
 
-                    graph.forEach(function(currentNode) {
-                        var weight = currentNode.listen_count;
-
-                        degreeDistributionList.containsWeight = function (weight) {
-                           degreeDistributionList.forEach(function(degreeDistribution){
-                              if(degreeDistribution.weight == weight) return true;
-                           });
-                            return false;
-                        };
-
-                        degreeDistributionList.incrementDegreeDistribution = function (weight) {
-                            degreeDistributionList.forEach(function(degreeDistribution){
-                                if(degreeDistribution.weight == weight) {
-                                    degreeDistribution.degreeDistribution++;
-                                    return;
-                                }
-                            });
-                        };
-
-                        if( ! degreeDistributionList.containsWeight(weight)){
-                            degreeDistributionList.push({
-                                weight: weight,
-                                degreeDistribution: 1
-                            });
-                        } else {
-                           degreeDistributionList.incrementDegreeDistribution(weight);
-                        }
-                    });
-
-                    console.log(degreeDistributionList);
-                },
-                error: function(e){
-                    alert('error');
-                }
-            });
 
             var data = {
-                labels: ["artist name", 450, 600, 700, 800, 900, 1000, 1100],
-                datasets: [
+                labels: [],
+                datasets:
                     {
                         label: "My Second dataset",
                         fillColor: "rgba(151,187,205,0.2)",
@@ -189,9 +145,8 @@
                         pointStrokeColor: "#fff",
                         pointHighlightFill: "#fff",
                         pointHighlightStroke: "rgba(151,187,205,1)",
-                        data: [28, 48, 40, 19, 86, 27, 90]
+                        data: []
                     }
-                ]
             };
 
             var options = {
@@ -253,10 +208,42 @@
 
             };
 
-            // Get context with jQuery - using jQuery's .get() method.
-            var ctx = $("#myChart").get(0).getContext("2d");
 
-            var myLineChart = new Chart(ctx).Line(data, options);
+
+            $.ajax({
+                type : "get",
+                dataType: "json",
+                url : "{{ route('api_artists_path') }}" + "/minimumTimesListened=1",
+                data : data,
+                success : function (jsonArtistsListened) {
+                    // sorted by weight/listen_count
+                    var graph = jsonArtistsListened.data;
+                    var degreeDistributions = {};
+
+                    graph.forEach(function(currentNode) {
+                        var weight = currentNode.listen_count;
+
+                        if ( ! degreeDistributions.hasOwnProperty(weight)){
+                            degreeDistributions[weight] = 0;
+                        }
+
+                        degreeDistributions[weight]++;
+                    });
+
+                   for (var property in degreeDistributions) {
+                       if (degreeDistributions.hasOwnProperty(property)) {
+                           data.labels.push(property);
+                           data.datasets.data.push(degreeDistributions.property);
+                       }
+                   }
+
+//                    console.log(data);
+                    new Chart(ctx).Line(data, options);
+                },
+                error: function(e){
+                    alert('error');
+                }
+            });
         })
     </script>
 @endsection

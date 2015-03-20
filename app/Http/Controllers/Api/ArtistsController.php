@@ -53,7 +53,7 @@ class ArtistsController extends ApiController
 	 */
 	public function store()
 	{
-		if (!Input::get('slug'))
+		if ( ! Input::get('slug'))
 		{
 			// some kind of response
 			// 422
@@ -71,7 +71,7 @@ class ArtistsController extends ApiController
 	 */
 	public function show(Artist $artist)
 	{
-		if (!$artist->slug)
+		if ( ! $artist->slug)
 		{
 			return $this->respondNotFound('Artist not found');
 		}
