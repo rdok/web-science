@@ -81,7 +81,7 @@
                         <div class="col-md-12">
                             <div class="chart-responsive">
                                 <!-- Sales Chart Canvas -->
-                                <canvas id="myChart" height="90"></canvas>
+                                <div id="degreeDistributionChart" style="height: 400px; width: 100%;"></canvas>
                             </div><!-- /.chart-responsive -->
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -94,7 +94,6 @@
                                 <h5 class="description-header">$35,210.43</h5>
                                 <span class="description-text">TOTAL REVENUE</span>
                             </div><!-- /.description-block -->
-                        </div><!-- /.col -->
                         <div class="col-sm-3 col-xs-6">
                             <div class="description-block border-right">
                                 <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
@@ -126,124 +125,63 @@
 
 
 @section('scripts')
-    {!! HTML::script('packages/bower/chartjs/Chart.min.js', ["charset"=>"utf-8"], true) !!}
+    {!! HTML::script('packages/canvasjs/canvasjs.min.js', [], true) !!}
     <!-- page script -->
     <script type="text/javascript">
-        $(function () {
-            // Get context with jQuery - using jQuery's .get() method.
-            var ctx = $("#myChart").get(0).getContext("2d");
-
-
-            var data = {
-                labels: [],
-                datasets:
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("degreeDistributionChart",
                     {
-                        label: "My Second dataset",
-                        fillColor: "rgba(151,187,205,0.2)",
-                        strokeColor: "rgba(151,187,205,1)",
-                        pointColor: "rgba(151,187,205,1)",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(151,187,205,1)",
-                        data: []
-                    }
-            };
+                        title:{
+                            text: "Degree Distribution | Top 5000"
+                        },
+                        axisX:{
+                            title: "Weight",
+                            interlacedColor: "#F0F8FF",
+                            maximum: 5000
+                        },
+                        axisY:{
+                            title: "Weight counter"
+                        },
+                        zoomEnabled: true,
+                        data: [
 
-            var options = {
-
-                ///Boolean - Whether grid lines are shown across the chart
-                scaleShowGridLines : true,
-
-                //String - Colour of the grid lines
-                scaleGridLineColor : "rgba(0,0,0,.05)",
-
-                //Number - Width of the grid lines
-                scaleGridLineWidth : 1,
-
-                //Boolean - Whether to show horizontal lines (except X axis)
-                scaleShowHorizontalLines: true,
-
-                //Boolean - Whether to show vertical lines (except Y axis)
-                scaleShowVerticalLines: true,
-
-                // Boolean - Whether to show labels on the scale
-                scaleShowLabels: true,
-
-                // Interpolated JS string - can access value
-                scaleLabel: "<%=value%>",
-
-                //Boolean - Whether the line is curved between points
-                bezierCurve : true,
-
-                //Number - Tension of the bezier curve between points
-                bezierCurveTension : 0.4,
-
-                //Boolean - Whether to show a dot for each point
-                pointDot : false,
-
-                //Number - Radius of each point dot in pixels
-                pointDotRadius : 4,
-
-                //Number - Pixel width of point dot stroke
-                pointDotStrokeWidth : 1,
-
-                //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-                pointHitDetectionRadius : 20,
-
-                //Boolean - Whether to show a stroke for datasets
-                datasetStroke : true,
-
-                //Number - Pixel width of dataset stroke
-                datasetStrokeWidth : 2,
-
-                //Boolean - Whether to fill the dataset with a colour
-                datasetFill : false,
-
-                // Boolean - whether or not the chart should be responsive and resize when the browser does.
-                responsive: true,
-
-
-                //String - A legend template
-                legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
-
-            };
-
-
+                            {
+                                type: "line",
+                                dataPoints: []
+                            }
+                        ]
+                    });
 
             $.ajax({
                 type : "get",
-                dataType: "json",
                 url : "{{ route('api_artists_path') }}" + "/minimumTimesListened=1",
-                data : data,
                 success : function (jsonArtistsListened) {
-                    // sorted by weight/listen_count
                     var graph = jsonArtistsListened.data;
                     var degreeDistributions = {};
 
                     graph.forEach(function(currentNode) {
                         var weight = currentNode.listen_count;
 
-                        if ( ! degreeDistributions.hasOwnProperty(weight)){
+                        if ( ! ( weight in degreeDistributions ) ){
                             degreeDistributions[weight] = 0;
                         }
 
                         degreeDistributions[weight]++;
                     });
 
-                   for (var property in degreeDistributions) {
-                       if (degreeDistributions.hasOwnProperty(property)) {
-                           data.labels.push(property);
-                           data.datasets.data.push(degreeDistributions.property);
-                       }
-                   }
+                    var dataPoints = [];
 
-//                    console.log(data);
-                    new Chart(ctx).Line(data, options);
+                    for (var weightCounterIndex in degreeDistributions) {
+                        dataPoints.push({x: weightCounterIndex, y: degreeDistributions[weightCounterIndex]});
+                    }
+
+                    chart.options.data[0].dataPoints = dataPoints;
+                    chart.render();
                 },
                 error: function(e){
-                    alert('error');
+                    alert('something went wrong retrieving data. please refresh page.');
                 }
             });
-        })
+        }
     </script>
 @endsection
